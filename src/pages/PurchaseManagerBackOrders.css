@@ -1,0 +1,120 @@
+/* 📌 Contenedor Principal */
+.backorders-container {
+  padding: 20px;
+}
+
+/* 📌 Título */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* 📌 Estilo de la Barra de Búsqueda */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.search-input {
+  padding: 8px;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* 📌 Contenedor de Pestañas (Filtros) */
+.tabs-container {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 5px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.tab-button {
+  background: #333;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  min-width: 90px;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.tab-button.active {
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+/* 📌 Tabla */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.backorders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.backorders-table th,
+.backorders-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.backorders-table th {
+  background: #333;
+  color: white;
+}
+
+.backorders-table tr:hover {
+  background: #f1f1f1;
+}
+
+.highlighted-row {
+  background: #cce5ff;
+}
+
+/* 📌 Botón de Acción */
+.details-button {
+  background: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s ease-in-out;
+}
+
+.details-button:hover {
+  background: #0056b3;
+}
+
+/* 📌 Diseño Responsivo */
+@media (max-width: 768px) {
+  .search-input {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .tabs-container {
+    justify-content: flex-start;
+    max-width: 100%;
+  }
+
+  .tab-button {
+    font-size: 12px;
+    padding: 4px 8px;
+    min-width: auto;
+  }
+}

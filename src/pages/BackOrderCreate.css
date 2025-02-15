@@ -1,0 +1,428 @@
+/* Contenedor principal */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título */
+  .title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Formulario */
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Grupo de formulario */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .form-group select,
+  .form-group input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Fila de productos */
+  .product-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .product-row select,
+  .product-row input {
+    flex: 1;
+  }
+  
+  /* Botón Agregar Producto */
+  .add-product {
+    margin-top: 10px;
+    background: #007bff;
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-product:hover {
+    background: #0056b3;
+  }
+  
+  /* Botón Enviar */
+  .submit-btn {
+    background: #28a745;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background: #218838;
+  }
+  
+  /* Responsivo */
+  @media (max-width: 768px) {
+    .container {
+      padding: 15px;
+    }
+  
+    .product-row {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .product-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .add-product {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .submit-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+  }
+  .suggestions {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    max-height: 150px;
+    overflow-y: auto;
+    top: 60px;
+  }
+  
+  .suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .suggestion-item:hover {
+    background-color: #f0f0f0;
+  }
+  .selected-client {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  
+  .selected-client p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .suggestions {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  
+  .suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .suggestion-item:hover {
+    background-color: #f0f0f0;
+  }
+  /* Estilos para la lista de sugerencias */
+  .suggestions {
+    position: absolute; /* Asegurar que la lista esté posicionada correctamente */
+    background-color: white; /* Fondo blanco para contraste */
+    border: 1px solid #ccc; /* Borde para distinguir la lista */
+    border-radius: 4px; /* Bordes redondeados */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+    z-index: 10; /* Asegurar que esté sobre otros elementos */
+    list-style: none; /* Sin viñetas */
+    margin: 0; /* Sin margen */
+    padding: 0; /* Sin padding */
+    max-height: 150px; /* Altura máxima con scroll */
+    overflow-y: auto; /* Scroll si excede la altura */
+    width: 100%; /* Coincidir con el ancho del input */
+  }
+
+  /* Estilo para cada elemento de la lista de sugerencias */
+  .suggestion-item {
+    padding: 8px; /* Espaciado interno */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el elemento */
+  }
+
+  .suggestion-item:hover {
+    background-color: #f0f0f0; /* Cambiar color al pasar el mouse */
+  }
+
+  /* Ajustes para el contenedor del campo de búsqueda */
+  .product-row {
+    position: relative; /* Necesario para posicionar la lista de sugerencias dentro del contenedor */
+    margin-bottom: 15px; /* Espaciado inferior */
+  }
+
+  .suggestion-item.highlighted {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+  /* Estilo para el contenedor de sugerencias */
+  .suggestions {
+    position: absolute; /* Posiciona las sugerencias justo debajo del input */
+    z-index: 100; /* Asegúrate de que estén por encima de otros elementos */
+    background-color: white; /* Fondo blanco para resaltar las sugerencias */
+    border: 1px solid #ccc; /* Borde alrededor del contenedor */
+    width: 100%; /* Igualar el ancho al input */
+    max-height: 200px; /* Altura máxima para evitar que se desborde */
+    overflow-y: auto; /* Activar scroll si las sugerencias exceden la altura */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  }
+
+  /* Estilo para cada sugerencia individual */
+  .suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .suggestion-item:hover,
+  .suggestion-item.highlighted {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+
+  /* Ajustar el margen entre el input y las sugerencias */
+  .input-container {
+    position: relative; /* Contenedor relativo para manejar sugerencias absolutas */
+  }
+  .delete-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+  
+  .delete-btn:hover {
+    background-color: #cc0000;
+  }
+  .selected-products {
+    margin-top: 10px;
+  }
+  
+  .product-row {
+    display: grid;
+    grid-template-columns:2fr 1fr 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .product-row:last-child {
+    border-bottom: none;
+  }
+  
+  .product-name {
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  
+  .quantity-control button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .quantity-control button:hover {
+    background-color: #0056b3;
+  }
+  
+  .quantity-control input {
+    width: 40px;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .comments-input {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    height: 35px;
+  }
+  
+  .delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .delete-btn:hover {
+    background-color: #c82333;
+  }
+  input.input-fecha-promesa {
+    width: 45%;
+}
+/* 🔹 Asegurar que la página no se desborde */
+.container--registrarBackorder {
+  max-width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 🔹 Evitar que la lista de productos desborde */
+.selected-products {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* 🔹 Evitar que la lista de sugerencias se salga */
+.suggestions {
+  max-height: 250px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px;
+}
+.selected-products > h3 {
+  margin: 0;
+}
+
+/* 🔹 Evitar que la fila de productos desborde */
+.product-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* 🔹 Input de comentarios no debe hacer que la fila se expanda */
+.comments-input {
+  flex-grow: 1;
+  min-width: 150px;
+  max-width: 100%;
+}
+
+/* 🔹 Botón de eliminar alineado y sin causar desbordes */
+.delete-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: darkred;
+}
+
+/* 🔹 Ajustar el formulario para evitar desbordes */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 100%;
+}
+
+/* 🔹 Asegurar que los campos no sean más anchos que la pantalla */
+.input-container input,
+.input-container textarea {
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+.buttons-producto-edit {
+  display: flex;
+  gap: 25px;
+}

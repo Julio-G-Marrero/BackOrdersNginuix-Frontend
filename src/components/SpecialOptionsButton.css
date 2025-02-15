@@ -1,0 +1,49 @@
+.special-options {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .special-options-btn {
+    background-color: #ffcc00;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  .options-dropdown {
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    width: 250px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    top: 40px;
+    left: 0;
+    z-index: 100;
+  }
+  
+  .options-dropdown h4 {
+    margin: 0 0 8px;
+    font-size: 14px;
+  }
+  
+  .options-dropdown select,
+  .options-dropdown textarea {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 8px;
+  }
+  
+  .confirm-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+  }
+  

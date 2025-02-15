@@ -1,0 +1,1069 @@
+/* 🔹 Fondo oscuro con efecto overlay */
+.backorder-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* 🔹 Modal centrado */
+.backorder-modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: fit-content;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: center;
+}
+
+/* 🔹 Título del modal */
+.backorder-modal-title {
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* 🔹 Información del Cliente */
+.backorder-client-info {
+  font-size: 16px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+/* 🔹 Tabla de productos */
+.backorder-product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+.backorder-product-table th,
+.backorder-product-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.backorder-product-table th {
+  background-color: #f4f4f4;
+}
+
+/* 🔹 Botón de acción para cada estado */
+.action-button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  width: 120px;
+}
+
+/* 🔹 Colores según estado */
+.pending { background-color: #ffcc00; color: black; }
+.process { background-color: #17a2b8; color: white; }
+.fulfilled { background-color: #28a745; color: white; }
+.denied { background-color: #dc3545; color: white; }
+.delayed { background-color: #ffc107; color: black; }
+.unknown { background-color: #6c757d; color: white; }
+
+/* 🔹 Botón de cerrar */
+.backorder-close-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.backorder-close-button:hover {
+  background-color: #0056b3;
+}
+/* 🔹 Botones de acción */
+.action-button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.deny {
+  background-color: #dc3545;
+  color: white;
+}
+
+.approve {
+  background-color: #28a745;
+  color: white;
+}
+
+.view {
+  background-color: #007bff;
+  color: white;
+}
+
+/* 🔹 Modal de Confirmación */
+.action-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.action-modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.confirm-button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.cancel-button {
+  background-color: #6c757d;
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm-button:hover {
+  background-color: #0056b3;
+}
+
+.cancel-button:hover {
+  background-color: #545b62;
+}
+
+/* 🔹 Overlay del modal */
+.reject-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* 🔹 Caja del modal */
+.reject-modal {
+  background: white;
+  padding: 20px;
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 🔹 Animación de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* 🔹 Título del modal */
+.reject-modal h2 {
+  text-align: center;
+  color: #d9534f;
+}
+
+/* 🔹 Descripción */
+.reject-modal-description {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* 🔹 Información del producto */
+.reject-modal-info {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* 🔹 Label */
+.reject-modal-label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* 🔹 Textarea */
+.reject-modal-textarea {
+  width: 100%;
+  height: 80px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px;
+  resize: none;
+}
+
+/* 🔹 Botones */
+.reject-modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+/* 🔹 Botón de denegación */
+.reject-button {
+  background: #d9534f;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.reject-button:hover {
+  background: #c9302c;
+}
+
+/* 🔹 Botón de cancelar */
+.cancel-button {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cancel-button:hover {
+  background: #5a6268;
+}
+
+/* 🔹 Overlay para todos los modales */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* 🔹 Animación de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* 🔹 Título del modal */
+.modal-box h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* 🔹 Textos de ayuda */
+.modal-box p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* 🔹 Select */
+.modal-box select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+/* 🔹 Textarea */
+.modal-box textarea {
+  width: 100%;
+  height: 80px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px;
+  resize: none;
+}
+
+/* 🔹 Botones en el modal */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+/* 🔹 Botón de denegación */
+.deny-button {
+  background: #d9534f;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.deny-button:hover {
+  background: #c9302c;
+}
+
+/* 🔹 Botón de aprobación */
+.approve-button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.approve-button:hover {
+  background: #218838;
+}
+input.modal-input {
+  width: -webkit-fill-available;
+}
+/* 🔹 Botón de cancelar */
+.cancel-button {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cancel-button:hover {
+  background: #5a6268;
+}
+
+/* 🔹 Contenedor de botones dentro de la tabla */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* 🔹 Botón de acción en la tabla */
+.action-button {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+/* 🔹 Botón de denegar en la tabla */
+.action-button.deny {
+  background-color: #dd3a3a;
+  color: white;
+}
+
+.action-button.deny:hover {
+  background-color: #cc0000;
+}
+
+/* 🔹 Botón de asignar proveedor en la tabla */
+.action-button.approve {
+  background-color: #28a745;
+  color: white;
+}
+
+.action-button.approve:hover {
+  background-color: #218838;
+}
+
+/* 🔹 Botón de cerrar modal */
+.backorder-close-button {
+  margin: 0 auto;
+  width: min-content;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.flex-titulos {
+  display: flex;
+  justify-content: space-between;
+}
+
+.backorder-close-button:hover {
+  background: #0056b3;
+}
+
+/* 🔹 Estilos generales del modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* 🔹 Título del modal */
+.modal-box h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  text-align: center;
+  color: #333;
+}
+
+/* 🔹 Diseño mejorado para los inputs */
+.modal-box label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+.modal-box input, 
+.modal-box select, 
+.modal-box textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* 🔹 Mejora del layout usando grid */
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* 🔹 Botones con mejor diseño */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.approve-button {
+  background: #28a745;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 48%;
+  transition: background 0.3s;
+}
+
+.approve-button:hover {
+  background: #218838;
+}
+
+.cancel-button {
+  background: #dc3545;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 48%;
+  transition: background 0.3s;
+}
+
+.cancel-button:hover {
+  background: #c82333;
+}
+
+/* 🔹 Animación */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.backorder-product-table th {
+  background-color: #333;
+}
+button.history-button {
+  border-radius: 5px;
+}
+textarea.motivo-input {
+  width: 95%;
+}
+button.cancel-button.cancel-button-denegar {
+  background-color: #f6aa0a;
+}
+.suggestions-provaider {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: white;
+  position: absolute;
+  width: inherit;
+  z-index: 1000;
+}
+input.input-busqueda-provaider {
+  width: -webkit-fill-available;
+}
+.suggestion-item {
+  padding: 8px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover, .suggestion-item.highlighted {
+  background: #f0f0f0;
+}
+.provider-info {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+}
+
+.change-provider-btn {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.change-provider-btn:hover {
+  background-color: #e68900;
+}
+/* Contenedor de los inputs con controles */
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+  width: 100%;
+  max-width: 180px;
+}
+
+/* Botones + y - */
+.input-group button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.input-group button:hover {
+  background-color: #0056b3;
+}
+
+/* Input de cantidad y precio */
+.input-group input {
+  width: 50px;
+  text-align: center;
+  border: none;
+  font-size: 16px;
+  margin: 0 auto;
+  background: transparent;
+  outline: none;
+}
+
+input.input-fecha-promesa {
+  width: 36%;
+}
+
+/* Ajuste del input de precio */
+.price-input {
+  width: 100%;
+  max-width: 180px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 16px;
+  background: #f8f8f8;
+}
+
+/* Estilo cuando el input está en foco */
+.price-input:focus, .input-group input:focus {
+  border: 1px solid #007bff;
+  outline: none;
+}
+
+/* 🔹 Contenedor del modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+
+
+/* 🔹 Título del modal */
+.modal-title {
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+/* 🔹 Sección de información */
+.product-info {
+  text-align: left;
+  background: #f8f8f8;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.product-info p {
+  margin: 5px 0;
+}
+
+/* 🔹 Sección de fecha */
+.date-section {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.date-section label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.date-section input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* 🔹 Botones */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.approve-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  flex: 1;
+  margin-right: 5px;
+}
+
+.approve-button:hover {
+  background-color: #218838;
+}
+
+.close-button {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  flex: 1;
+  margin-left: 5px;
+}
+
+.close-button:hover {
+  background-color: #5a6268;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.confirm-button {
+  background-color: #28a745;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.confirm-button:hover {
+  background-color: #218838;
+}
+
+.cancel-button {
+  background-color: #dc3545;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cancel-button:hover {
+  background-color: #c82333;
+}
+
+.revert-button {
+  background-color: #ffbb28;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.revert-button:hover {
+  background-color: #ffa500;
+}
+/* Contenedor del menú de opciones */
+.options-menu {
+  position: relative;
+  display: inline-block;
+}
+
+/* Botón de opciones (⋮) */
+.options-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.options-button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos del menú desplegable */
+.options-dropdown {
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 8px 0;
+  border-radius: 8px;
+  min-width: 200px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Estilos de los botones dentro del menú */
+.options-dropdown button {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  color: #333;
+}
+
+.options-dropdown button:hover {
+  background: #f0f0f0;
+}
+
+/* Estilos de los iconos */
+.options-dropdown button svg {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Iconos específicos */
+.options-dropdown .revert-icon {
+  color: #1E88E5; /* Azul */
+}
+
+.options-dropdown .cancel-icon {
+  color: #E53935; /* Rojo */
+}
+
+.options-dropdown .history-icon {
+  color: #FFB300; /* Amarillo */
+}
+.status-label {
+  padding: 0 !important;
+}
+td.actions-buttons {
+  display: flex
+;
+  flex-direction: column;
+}
+.backorder-modal {
+  display: flex;
+  flex-direction: column;
+  max-width: 850px; /* Limitar el ancho máximo */
+  max-height: 90vh; /* Limitar el alto máximo */
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.backorder-product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.backorder-product-table thead {
+  background-color: #333;
+  color: white;
+}
+
+.backorder-product-table th, 
+.backorder-product-table td {
+  padding: 10px;
+  text-align: left !important;
+  border: 1px solid #ddd;
+  word-break: keep-all; /* Evita que el texto se desborde */
+}
+
+.backorder-product-table th {
+  white-space: nowrap;
+}
+
+.table-container {
+  max-height: 50vh; /* Define un alto máximo */
+  overflow-y: auto; /* Permite desplazamiento si es necesario */
+  overflow-x: auto; /* Permite desplazamiento horizontal */
+  width: 100%;
+}
+
+/* Responsivo para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .table-container {
+    max-height: 40vh;
+  }
+
+  .backorder-modal {
+    max-width: 850px;
+    max-height: 95vh;
+  }
+}
+@media (max-width: 425px) {
+  .table-container {
+    max-height: 40vh;
+  }
+
+  .backorder-modal {
+    max-width: 330px;
+    max-height: 95vh;
+  }
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Habilita el scroll horizontal */
+    white-space: nowrap; /* Evita que el texto se desborde en múltiples líneas */
+  }
+  
+  .backorder-product-table {
+    width: 100%;
+    min-width: 600px; /* Define un ancho mínimo para evitar que la tabla se colapse */
+    border-collapse: collapse;
+  }
+  
+}
+button {
+  width: auto;
+  min-width: fit-content;
+  padding: 10px 16px;
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+.tabs-container {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto; /* Agrega scroll horizontal */
+  white-space: nowrap; /* Evita que los botones salten a otra línea */
+  padding: 5px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  scrollbar-width: thin; /* Hace la barra de desplazamiento más delgada */
+  scrollbar-color: #ccc transparent;
+}
+
+/* Para navegadores WebKit (Chrome, Safari) */
+.tabs-container::-webkit-scrollbar {
+  height: 6px; /* Tamaño del scroll */
+}
+
+.tabs-container::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 4px;
+}
+
+/* Ajuste de los botones para que se mantengan en una línea */
+.tab-button {
+  padding: 8px 12px;
+  text-align: center;
+  white-space: nowrap; /* No permite salto de línea en los botones */
+  flex-shrink: 0; /* Evita que los botones se reduzcan demasiado */
+}
+.filter-tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto; /* Scroll horizontal si los botones no caben */
+    white-space: nowrap; /* Evita saltos de línea */
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    scrollbar-width: thin; /* Hace el scroll más delgado */
+    scrollbar-color: #ccc transparent;
+}
+
+/* Para navegadores WebKit (Chrome, Safari) */
+.filter-tabs::-webkit-scrollbar {
+    height: 6px; /* Tamaño del scroll */
+}
+
+.filter-tabs::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 4px;
+}
+
+/* Estilos de los botones */
+.tab-button {
+    flex-shrink: 0; /* Evita que los botones se encojan */
+    padding: 8px 16px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    text-align: center;
+    white-space: nowrap; /* Evita que el texto se corte */
+}
+
+.tab-button:hover {
+    background: #555;
+}
+
+.tab-button.active {
+    background: #007bff;
+    font-weight: bold;
+    transform: scale(1.05);
+}
+td {
+  white-space: normal; /* Permite saltos de línea */
+  word-wrap: break-word; /* Evita cortes de palabras */
+  text-align: center;
+  padding: 8px;
+}
+.options-menu-td {
+  padding: 0 !important;
+}
+
+.modal-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: auto ;
+  max-width: 630px !important;
+  text-align: center;
+}
+.modal-box-seller {
+  width: auto !important;
+}

@@ -1,0 +1,131 @@
+/* 🔹 Contenedor principal */
+.dashboard-container {
+  padding: 24px;
+  background-color: #f4f6f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+/* 🔹 Título del Dashboard */
+.dashboard-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+/* 🔹 Contenedor de botones de acciones rápidas */
+.quick-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.quick-actions button {
+  padding: 12px 18px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.quick-actions button:hover {
+  opacity: 0.9;
+}
+
+.create-backorder {
+  background-color: #007bff;
+  color: white;
+}
+
+.manage-providers {
+  background-color: #28a745;
+  color: white;
+}
+
+/* 🔹 Layout del dashboard */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 10px;
+}
+
+/* 🔹 Tarjetas de estadísticas */
+.dashboard-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 250px;
+}
+
+/* 🔹 Títulos de las tarjetas */
+.dashboard-card h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+/* 🔹 Listas dentro de tarjetas */
+.dashboard-card ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.dashboard-card ul li {
+  padding: 6px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  color: #666;
+}
+
+.dashboard-card ul li:last-child {
+  border-bottom: none;
+}
+
+/* 🔹 Estilos de los números en estadísticas */
+.stat-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 🔹 Mejorar el diseño de la tabla de proveedores */
+.dashboard-bar-chart {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* 🔹 Mensajes */
+.loading-message, .error-message {
+  font-size: 18px;
+  text-align: center;
+}
+
+/* 🔹 Responsividad */
+@media (max-width: 768px) {
+  .quick-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}

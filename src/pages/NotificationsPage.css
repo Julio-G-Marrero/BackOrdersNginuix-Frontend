@@ -1,0 +1,53 @@
+.notifications-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .notifications-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .notifications-list li {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+  }
+  
+  .unread {
+    background: #ffef96;
+  }
+  
+  .read {
+    background: #f0f0f0;
+  }
+  
+  .mark-all-btn {
+    display: block;
+    margin: 10px auto;
+    padding: 8px 15px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .mark-all-btn:hover {
+    background: #0056b3;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+  }
+  

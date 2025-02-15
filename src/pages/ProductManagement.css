@@ -1,0 +1,348 @@
+/* Estilos Generales */
+.product-container {
+    max-width: 95%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 🔹 Encabezado */
+  .product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .product-header h1 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .add-product-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .add-product-btn:hover {
+    background: #0056b3;
+  }
+  
+  /* 🔍 Barra de Búsqueda */
+  .product-search-container {
+    margin-bottom: 10px;
+    text-align: right;
+  }
+  
+  .product-search-container input {
+    width: -webkit-fill-available;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* 📜 Tabla de Productos */
+  .product-table-container {
+    overflow-x: auto;
+  }
+  
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .product-table th, .product-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .product-table th {
+    background: #333;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .product-table tr:nth-child(even) {
+    background: #f9f9f9;
+  }
+  
+  .product-table tr:hover {
+    background: #f1f1f1;
+  }
+  
+  /* 🎭 Botones de Acción */
+  .edit-btn, .delete-btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    margin: 2px;
+    border-radius: 5px;
+  }
+  
+  .edit-btn {
+    background: #ffc107;
+    color: white;
+  }
+  
+  .edit-btn:hover {
+    background: #e0a800;
+  }
+  
+  .delete-btn {
+    background: #dc3545;
+    color: white;
+  }
+  
+  .delete-btn:hover {
+    background: #c82333;
+  }
+  
+  /* 📌 Paginación */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+  }
+  
+  .pagination button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .pagination button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* 🛑 Modales */
+  .confirm-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .confirm-modal-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 400px;
+  }
+  
+  .confirm-modal-box h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .confirm-modal-box p {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .confirm-modal-confirm-button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .confirm-modal-confirm-button:hover {
+    background: #218838;
+  }
+  
+  .confirm-modal-cancel-button {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .confirm-modal-cancel-button:hover {
+    background: #c82333;
+  }
+  
+  /* 📌 Formulario dentro del modal */
+  .product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .product-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .product-form button {
+    padding: 10px;
+    border: none;
+    background: #007bff;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .product-form button:hover {
+    background: #0056b3;
+  }
+  .customer-table td, .customer-table th,
+.product-table td, .product-table th {
+  white-space: nowrap; /* Evita saltos de línea */
+  overflow: hidden; /* Oculta el texto que se desborda */
+  text-overflow: ellipsis; /* Agrega "..." si el texto es demasiado largo */
+  max-width: 200px; /* Ajusta según sea necesario */
+}
+
+.product-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .import-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .import-section input {
+    margin-right: 10px;
+  }
+  
+  .import-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .import-btn:hover {
+    background: #0056b3;
+  }
+  
+  .product-table .truncate {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* 🎛 Botones */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.modal-buttons button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.modal-buttons .confirm-btn {
+  background: #28a745;
+  color: white;
+}
+
+.modal-buttons .cancel-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.modal-buttons button:hover {
+  opacity: 0.8;
+}
+
+/* 🎞 Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+/* Mensajes de error */
+.error-text {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* Si el input tiene un error, se muestra en rojo */
+input.error {
+  border: 2px solid #dc3545;
+}
+
+/* Mensajes de error */
+.error-text {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* Resaltar input con error */
+input.error {
+  border: 2px solid #dc3545;
+}

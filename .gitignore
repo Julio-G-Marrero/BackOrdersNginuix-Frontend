@@ -1,0 +1,42 @@
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Build outputs
+dist/
+build/
+out/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cache
+.cache/
+.vite/
+.vitepress/cache/
+*.tsbuildinfo
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Dependencies
+package-lock.json
+yarn.lock
+
+# Misc
+.DS_Store
+Thumbs.db

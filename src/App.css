@@ -1,0 +1,170 @@
+/* Contenedor principal */
+.app-container {
+  display: flex;
+  flex-direction: column; /* Cambia a columna para permitir ajuste dinámico */
+  height: 100vh;
+}
+
+/* Barra lateral */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%; /* Ocupa toda la altura */
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: transform 0.3s ease;
+}
+
+.logo {
+    color: white;
+}
+
+/* Contenido principal */
+.main-content {
+  margin-left: 280px; /* Espacio para la barra lateral en pantallas grandes */
+  flex: 1; /* Toma todo el espacio disponible */
+  padding: 20px;
+  background-color: #f4f4f9;
+  overflow-y: auto; /* Agrega scroll si el contenido es muy largo */
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  box-sizing: border-box; /* Incluye padding en el tamaño total */
+  display: flex;
+  flex-direction: column;
+}
+/* 🔹 Contenedor principal */
+.app-container {
+  display: flex;
+  flex-direction: column; /* Asegura que el contenido fluya correctamente */
+  height: 100vh;
+}
+
+/* 🔹 Contenido principal */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+}
+.enlace-pagina {
+  font-weight: 700;
+  margin-top: 10px;
+}
+tr:hover {
+  cursor: pointer;
+}
+.main-content.no-padding {
+  margin-left: 0px;
+}
+/* 🔹 Si el Navbar está oculto (Login/Register), el contenido ocupa toda la pantalla */
+.no-navbar .main-content {
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ocupa toda la pantalla */
+}
+
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0; /* Elimina el margen para pantallas pequeñas */
+  }
+}
+
+/* Estilos generales */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #333;
+  color: white;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Resalta la fila del Back Order seleccionado */
+.highlighted-row {
+  background-color: rgba(255, 223, 186, 0.5);
+  font-weight: bold;
+}
+
+/* Resalta la fila del producto seleccionado */
+.highlighted-product {
+  background-color: rgba(186, 255, 201, 0.5);
+  font-weight: bold;
+}
+
+/* 🔹 Fondo oscuro detrás del modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999; /* Debajo del modal */
+}
+
+/* 🔹 Modal centrado */
+.modal {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  width: 50%;
+  max-width: 800px;
+  left: 20%;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 🔹 Animación de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

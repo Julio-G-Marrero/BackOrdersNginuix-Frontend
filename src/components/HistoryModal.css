@@ -1,0 +1,119 @@
+/* 🔹 Contenedor del Historial con Scroll Mejorado */
+.timeline-container {
+  position: relative;
+  margin: 20px auto;
+  border-left: 3px solid #ddd;
+  width: 90%;
+  max-height: 60vh; /* ✅ Altura máxima con scroll */
+  overflow-y: auto;  /* ✅ Activar solo scroll vertical */
+  padding-right: 10px;
+}
+
+/* 🔹 Personalización del Scroll */
+.timeline-container::-webkit-scrollbar {
+  width: 8px; /* ✅ Grosor del scroll */
+}
+
+.timeline-container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* ✅ Color de fondo del track */
+  border-radius: 5px;
+}
+
+.timeline-container::-webkit-scrollbar-thumb {
+  background: #007bff; /* ✅ Color del scroll */
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.timeline-container::-webkit-scrollbar-thumb:hover {
+  background: #0056b3; /* ✅ Cambio de color al pasar el mouse */
+}
+
+/* 🔹 Elemento del Historial */
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  position: relative;
+  padding-left: 15px; /* ✅ Espacio para la línea del timeline */
+}
+
+/* 🔹 Punto Azul de cada Evento */
+.timeline-dot {
+  width: 15px;
+  height: 16px;
+  background-color: #007bff;
+  border-radius: 100%;
+  margin-right: 15px;
+  flex-shrink: 0;
+  position: absolute;
+  left: -6px;
+  top: 5px;
+}
+
+/* 🔹 Estilo del Contenido */
+.timeline-content {
+  flex: 1;
+  background: #ffffff;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: #333;
+  border-radius: 5px;
+  text-align: left;
+}
+
+/* 🔹 Negrita en los Títulos */
+.timeline-action {
+  font-weight: bold;
+  color: #222;
+  margin-top: 0px;
+}
+
+/* 🔹 Usuario y Comentarios */
+.timeline-user {
+  font-size: 13px;
+  color: #555;
+  font-weight: bold;
+}
+
+.timeline-comments {
+  font-size: 13px;
+  color: #777;
+  font-style: italic;
+}
+
+/* 🔹 Botón de Cerrar con Diseño Mejorado */
+.close-button {
+  display: block;
+  width: 100%;
+  background-color: #dc3545;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.close-button:hover {
+  background-color: #c82333;
+}
+
+/* 🔹 Ajuste Responsivo */
+@media (max-width: 768px) {
+  .timeline-container {
+    width: 100%;
+    max-height: 50vh;
+  }
+
+  .timeline-content {
+    font-size: 12px;
+  }
+
+  .close-button {
+    font-size: 14px;
+  }
+}
