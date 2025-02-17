@@ -36,7 +36,10 @@ const Navbar = () => {
 
         {/* 🔹 Si el usuario NO está logueado, mostrar solo el mensaje */}
         {!user ? (
-          <p className="not-logged-message">⚠️ Inicia sesión para acceder</p>
+          <div>
+            <p className="not-logged-message">⚠️ Inicia sesión para acceder</p>
+            <Link to="/login">Inicia Sesión aqui</Link>
+          </div>
         ) : (
           <>
             <p className="user-info">Bienvenido, {user.name}</p>
