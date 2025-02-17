@@ -7,6 +7,7 @@ const axiosInstance = axios.create({
     "Content-Type": "application/json",
   },
 });
+//deplot
 
 // 🔥 Interceptor para agregar el token de autenticación automáticamente
 axiosInstance.interceptors.request.use(
