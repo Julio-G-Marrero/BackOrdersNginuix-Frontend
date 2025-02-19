@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./BackOrderCreate.css";
 import axiosInstance from "../services/axiosInstance";
 import QuantityInput from "../components/QuantityInput";
+import Swal from "sweetalert2";
 
 const BackOrderCreate = () => {
   const [clients, setClients] = useState([]);
@@ -70,6 +71,18 @@ const BackOrderCreate = () => {
     
     setBackOrderProducts((prev) => prev.filter((_, i) => i !== index));
   };
+
+ const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    },
+  });
 
   const handleClientSelect = (client) => {
     setSelectedClient(client);
@@ -169,8 +182,12 @@ const BackOrderCreate = () => {
   
       await axiosInstance.post("/backorders", backOrderData);
   
-      alert("✅ Back Order creado con éxito!");
-  
+      // 🔹 Mostrar alerta de éxito
+      Toast.fire({
+        icon: "success",
+        title: "Proveedor asignado correctamente.",
+      });  
+      
       // Reiniciar el formulario después de enviar
       setSelectedClient(null);
       setBackOrderProducts([]);
