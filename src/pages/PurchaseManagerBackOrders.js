@@ -216,8 +216,8 @@ const PurchaseManagerBackOrders = () => {
 
     if (aggregatedView) {
       // Configuración de columnas para la vista de Producto/Proveedor
-      tableColumn = ["Proveedor", "Producto", "Cantidad Total", "Cliente", "Cantidad", "Estado"];
-
+      tableColumn = ["Proveedor", "Producto", "Cantidad Total", "Cliente", "Cantidad", "Estado", "Vendedor"];
+    
       Object.entries(dataToExport).forEach(([provider, products]) => {
         Object.entries(products).forEach(([productName, productData]) => {
           productData.details.forEach(detail => {
@@ -228,14 +228,15 @@ const PurchaseManagerBackOrders = () => {
               detail.client,
               detail.quantity,
               statusLabels[detail.status] || detail.status,
+              detail.createdBy || "Usuario no asignado", // 🔹 Agregar el usuario
             ]);
           });
         });
       });
     } else {
       // Configuración de columnas para la vista de Back Orders
-      tableColumn = ["Cliente", "Producto", "Cantidad", "Proveedor", "Estado", "Fecha"];
-
+      tableColumn = ["Cliente", "Producto", "Cantidad", "Proveedor", "Estado", "Fecha", "Vendedor"];
+    
       dataToExport.forEach(order => {
         order.products.forEach(product => {
           tableRows.push([
@@ -245,6 +246,7 @@ const PurchaseManagerBackOrders = () => {
             product.provider,
             statusLabels[product.status] || product.status,
             new Date(order.createdAt).toLocaleDateString(),
+            order.createdBy?.name || "Usuario no asignado", // 🔹 Agregar el usuario
           ]);
         });
       });
@@ -309,6 +311,7 @@ const PurchaseManagerBackOrders = () => {
               Cliente: detail.client,
               Cantidad: detail.quantity,
               Estado: statusLabels[detail.status] || detail.status,
+              Vendedor: detail.createdBy || "Usuario no asignado", // 🔹 Agregar usuario
             });
           });
         });
@@ -324,6 +327,7 @@ const PurchaseManagerBackOrders = () => {
             Proveedor: product.provider,
             Estado: statusLabels[product.status] || product.status,
             "Fecha de Creación": new Date(order.createdAt).toLocaleDateString(),
+            Vendedor: order.createdBy?.name || "Usuario no asignado", // 🔹 Agregar usuario
           });
         });
       });
@@ -371,7 +375,7 @@ const PurchaseManagerBackOrders = () => {
     shipped: "Enviado por Proveedor",
     in_delivery_process: "En Proceso de Surtimiento",
     partial: "Surtido Parcial",
-    fulfilled: "Articulo Finiquitado",
+    fulfilled: "Surtido Completo",
     denied: "Denegado",
     delayed: "Retrasado",
   };
