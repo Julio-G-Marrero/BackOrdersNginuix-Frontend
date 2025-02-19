@@ -129,3 +129,32 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* 🔹 Responsividad */
+@media (max-width: 450px) {
+  .dashboard-container {
+    padding: 0;
+  }
+  .container-buttons-top {
+    display: block;
+  }
+  button.vista-toggle-bttn.details-button {
+    font-size: 11px;
+  }
+  .refresh-container {
+    flex-direction: column !important;
+  }
+}
+.refresh-container {
+  flex-direction: unset;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sidebar.open {
+  z-index: 10;
+}
+.container-buttons-top {
+  display: flex;
+  justify-content: space-between;
+}
