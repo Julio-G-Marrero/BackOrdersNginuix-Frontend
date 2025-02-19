@@ -61,6 +61,53 @@ const BackOrderDetailsModal = ({ order, setOrder, onClose }) => {
     },
   });
 
+  const handleDeleteBackOrder = async () => {
+    if (!order._id) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "No se encontró el ID del Back Order.",
+      });
+      return;
+    }
+  
+    const result = await Swal.fire({
+      title: "¿Eliminar Back Order?",
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
+  
+    if (!result.isConfirmed) return;
+  
+    try {
+      await axiosInstance.delete(`/backorders/${order._id}`);
+  
+      Swal.fire({
+        icon: "success",
+        title: "Back Order eliminado",
+        text: "Se ha eliminado correctamente.",
+        showConfirmButton: false,
+        timer: 2500,
+      }).then(() => {
+        // window.location.reload(); // 🔄 Recargar la página después de eliminar
+      });
+  
+      onClose(); // Cierra el modal antes de la recarga
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error al eliminar",
+        text: "Hubo un problema al eliminar el Back Order.",
+      });
+      console.error("❌ Error al eliminar el Back Order:", error.response?.data || error);
+    }
+  };
+
   const handleCancelProduct = (product) => {
     if (window.confirm("¿Estás seguro de cancelar este producto? Esta acción no se puede deshacer.")) {
       // Lógica para cancelar el producto
@@ -479,9 +526,16 @@ const BackOrderDetailsModal = ({ order, setOrder, onClose }) => {
       <div className="backorder-modal" onClick={(e) => e.stopPropagation()}>
         <div className="flex-titulos">
           <h2 className="backorder-modal-title">Detalles del Back Order</h2>
-          <button className="history-button" onClick={openHistoryModal}>
-            Ver Historial
-          </button>
+          <div className="history-button_details-button__container">
+            <button className="history-button details-button" onClick={openHistoryModal}>
+              Ver Historial
+            </button>
+            <button className="delete-button" onClick={handleDeleteBackOrder}>
+              <svg class="delete-button-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+          </div>
         </div>
 
         <div className="backorder-client-info">

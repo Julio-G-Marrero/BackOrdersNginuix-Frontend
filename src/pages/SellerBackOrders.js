@@ -258,9 +258,9 @@ const SellerBackOrders = () => {
 const BackOrderDetailsModal = ({ order, onClose, openApproveModal, openReceiveModal, statusLabels, deleteBackOrder }) => {
   const [showDenialReasonModal, setShowDenialReasonModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const handleDelete = () => {
+  {/*const handleDelete = () => {
     deleteBackOrder(order._id);
-  };
+  };*/}
   const openDenialReasonModal = (product) => {
     setSelectedProduct(product);
     setShowDenialReasonModal(true);
@@ -321,7 +321,7 @@ const BackOrderDetailsModal = ({ order, onClose, openApproveModal, openReceiveMo
 
         {/* 🔹 Botones de acción */}
         <div className="modal-buttons">
-          <button className="delete-button" onClick={handleDelete}> Eliminar Back Order</button>
+          {/*<button className="delete-button" onClick={handleDelete}> Eliminar Back Order</button>*/}
           <button className="close-button" onClick={onClose}>Cerrar</button>
         </div>
       </div>

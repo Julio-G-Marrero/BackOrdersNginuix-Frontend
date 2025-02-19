@@ -1067,3 +1067,14 @@ td {
 .modal-box-seller {
   width: auto !important;
 }
+svg.delete-button-svg {
+  width: 20px;
+}
+button.delete-button {
+  padding: 6px 10px;
+}
+.history-button_details-button__container {
+  display: flex;
+  justify-content: center;
+  max-height: 50px;
+}
