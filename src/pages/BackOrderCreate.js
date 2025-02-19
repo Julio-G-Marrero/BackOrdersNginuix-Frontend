@@ -185,9 +185,9 @@ const BackOrderCreate = () => {
       // 🔹 Mostrar alerta de éxito
       Toast.fire({
         icon: "success",
-        title: "Proveedor asignado correctamente.",
+        title: "Backorder Creado Correctamente",
       });  
-      
+
       // Reiniciar el formulario después de enviar
       setSelectedClient(null);
       setBackOrderProducts([]);
