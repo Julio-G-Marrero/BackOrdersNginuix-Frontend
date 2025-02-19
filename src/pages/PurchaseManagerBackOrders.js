@@ -514,6 +514,7 @@ const PurchaseManagerBackOrders = () => {
                 <th>Proveedor</th>
                 <th>Producto</th>
                 <th>Cantidad Total</th>
+                <th>Vendedor</th> {/* 🔹 Nueva columna */}
                 <th>Detalles</th>
               </tr>
             </thead>
@@ -526,6 +527,7 @@ const PurchaseManagerBackOrders = () => {
                         <td>{provider}</td>
                         <td>{productName}</td>
                         <td>{productData.totalQuantity}</td>
+                        <td>{productData.details.length > 0 ? productData.details[0].createdBy || "Usuario no asignado" : "Usuario no asignado"}</td> {/* 🔹 Mostrar vendedor */}
                         <td>
                           <button className="details-button" onClick={() => toggleRowExpansion(provider, productName)}>
                             {expandedRows[`${provider}-${productName}`] ? "🔼 Ocultar Detalles" : "🔽 Ver Detalles"}
@@ -538,7 +540,8 @@ const PurchaseManagerBackOrders = () => {
                           <tr key={`${provider}-${productName}-detail-${index}`} className="details-row">
                             <td colSpan="2" className="sub-row">👤 Cliente: {detail.client}</td>
                             <td>{detail.quantity} unidades</td>
-                            <td>Estado: {detail.status}</td>
+                            <td>Estado: {statusLabels[detail.status] || detail.status}</td>
+                            <td>Vendedor: {detail.createdBy || "Usuario no asignado"}</td> {/* 🔹 Mostrar vendedor en los detalles */}
                           </tr>
                         ))}
                     </React.Fragment>
@@ -546,7 +549,7 @@ const PurchaseManagerBackOrders = () => {
                 )
               ) : (
                 <tr>
-                  <td colSpan="4" className="no-results">⚠️ No hay resultados para los filtros seleccionados.</td>
+                  <td colSpan="5" className="no-results">⚠️ No hay resultados para los filtros seleccionados.</td>
                 </tr>
               )}
             </tbody>
@@ -560,6 +563,7 @@ const PurchaseManagerBackOrders = () => {
                 <th>Cliente</th>
                 <th>Estado</th>
                 <th>Fecha</th>
+                <th>Vendedor</th> {/* 🔹 Nueva columna */}
                 <th>Acción</th>
               </tr>
             </thead>
@@ -574,6 +578,7 @@ const PurchaseManagerBackOrders = () => {
                     <td>{order.client ? order.client.name : "Cliente no asignado"}</td>
                     <td>{statusLabels[order.statusGeneral] || "Desconocido"}</td>
                     <td>{new Date(order.createdAt).toLocaleDateString()}</td>
+                    <td>{order.createdBy ? order.createdBy.name : "Usuario no asignado"}</td> {/* 🔹 Mostrar vendedor */}
                     <td>
                       <button onClick={() => handleOpenOrder(order)} className="details-button">
                         Ver Detalles
@@ -583,7 +588,7 @@ const PurchaseManagerBackOrders = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="4" className="no-results">⚠️ No hay resultados para los filtros seleccionados.</td>
+                  <td colSpan="5" className="no-results">⚠️ No hay resultados para los filtros seleccionados.</td>
                 </tr>
               )}
             </tbody>
