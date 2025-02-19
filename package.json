@@ -17,6 +17,9 @@
   "dependencies": {
     "axios": "^1.7.9",
     "chart.js": "^4.4.7",
+    "file-saver": "^2.0.5",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.4",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.2.0",
@@ -26,7 +29,8 @@
     "reactour": "^1.19.4",
     "recharts": "^2.15.1",
     "socket.io-client": "^4.8.1",
-    "sweetalert2": "^11.16.0"
+    "sweetalert2": "^11.16.0",
+    "xlsx": "^0.18.5"
   },
   "browserslist": {
     "production": [
