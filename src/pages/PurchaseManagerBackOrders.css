@@ -161,7 +161,18 @@
   border-radius: 5px;
   transition: background 0.2s ease-in-out;
 }
-
+button.export-button-excel.details-button {
+  background-color: #1f6f43;
+}
+button.export-button-pdf.details-button {
+  background-color: #ad0b00;
+}
+.button-export-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
 .details-button:hover {
   background-color: #0056b3;
 }
