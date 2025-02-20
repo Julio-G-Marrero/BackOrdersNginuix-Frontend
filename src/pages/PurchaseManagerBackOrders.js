@@ -514,7 +514,6 @@ const PurchaseManagerBackOrders = () => {
                 <th>Proveedor</th>
                 <th>Producto</th>
                 <th>Cantidad Total</th>
-                <th>Vendedor</th> {/* 🔹 Nueva columna */}
                 <th>Detalles</th>
               </tr>
             </thead>
@@ -527,11 +526,6 @@ const PurchaseManagerBackOrders = () => {
                         <td>{provider}</td>
                         <td>{productName}</td>
                         <td>{productData.totalQuantity}</td>
-                        <td>
-                          {productData.details.length > 0
-                            ? productData.details[0]?.createdBy?.name || "Usuario no asignado"
-                            : "Usuario no asignado"}
-                        </td> {/* 🔹 Mostrar vendedor */}
                         <td>
                           <button className="details-button" onClick={() => toggleRowExpansion(provider, productName)}>
                             {expandedRows[`${provider}-${productName}`] ? "🔼 Ocultar Detalles" : "🔽 Ver Detalles"}
