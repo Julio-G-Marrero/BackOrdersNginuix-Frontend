@@ -507,98 +507,92 @@ const PurchaseManagerBackOrders = () => {
         </div>
       </div>
       {aggregatedView ? (
-          <div className="table-wrapper">
-            <table className="backorders-table">
-              <thead>
-                <tr>
-                  <th>Proveedor</th>
-                  <th>Producto</th>
-                  <th>Cantidad Total</th>
-                  <th>Vendedor</th> {/* 🔹 Nueva columna */}
-                  <th>Detalles</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(filteredAggregatedBackOrders || {}).length > 0 ? (
-                  Object.entries(filteredAggregatedBackOrders).map(([provider, products]) =>
-                    Object.entries(products).map(([productName, productData]) => (
-                      <React.Fragment key={`${provider}-${productName}`}>
-                        <tr>
-                          <td>{provider}</td>
-                          <td>{productName}</td>
-                          <td>{productData.totalQuantity}</td>
-                          <td>
-                            {productData.details.length > 0
-                              ? productData.details[0]?.createdBy?.name || "Usuario no asignado"
-                              : "Usuario no asignado"}
-                          </td> {/* 🔹 Mostrar vendedor */}
-                          <td>
-                            <button className="details-button" onClick={() => toggleRowExpansion(provider, productName)}>
-                              {expandedRows[`${provider}-${productName}`] ? "🔼 Ocultar Detalles" : "🔽 Ver Detalles"}
-                            </button>
-                          </td>
-                        </tr>
+        <div className="table-wrapper">
+          <table className="backorders-table">
+            <thead>
+              <tr>
+                <th>Proveedor</th>
+                <th>Producto</th>
+                <th>Cantidad Total</th>
+                <th>Detalles</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(filteredAggregatedBackOrders || {}).length > 0 ? (
+                Object.entries(filteredAggregatedBackOrders).map(([provider, products]) =>
+                  Object.entries(products).map(([productName, productData]) => (
+                    <React.Fragment key={`${provider}-${productName}`}>
+                      <tr>
+                        <td>{provider}</td>
+                        <td>{productName}</td>
+                        <td>{productData.totalQuantity}</td>
+                        <td>
+                          <button className="details-button" onClick={() => toggleRowExpansion(provider, productName)}>
+                            {expandedRows[`${provider}-${productName}`] ? "🔼 Ocultar Detalles" : "🔽 Ver Detalles"}
+                          </button>
+                        </td>
+                      </tr>
 
-                        {expandedRows[`${provider}-${productName}`] &&
-                          productData.details.map((detail, index) => (
-                            <tr key={`${provider}-${productName}-detail-${index}`} className="details-row">
-                              <td colSpan="2" className="sub-row">👤 Cliente: {detail.client}</td>
-                              <td>{detail.quantity} unidades</td>
-                              <td>Estado: {statusLabels[detail.status] || detail.status}</td>
-                              <td>Vendedor: {detail.createdBy?.name || "Usuario no asignado"}</td> {/* 🔹 Mostrar vendedor en los detalles */}
-                            </tr>
-                          ))}
-                      </React.Fragment>
-                    ))
-                  )
-                ) : (
-                  <tr>
-                    <td colSpan="5" className="no-results">⚠️ No hay resultados para los filtros seleccionados.</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <div className="table-wrapper">
-            <table className="backorders-table">
-              <thead>
-                <tr>
-                  <th>Cliente</th>
-                  <th>Estado</th>
-                  <th>Fecha</th>
-                  <th>Vendedor</th> {/* 🔹 Nueva columna */}
-                  <th>Acción</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredBackOrders.length > 0 ? (
-                  filteredBackOrders.map((order) => (
-                    <tr
-                      key={order._id}
-                      onClick={() => handleOpenOrder(order)}
-                      className={selectedOrderId === order._id ? "highlighted-row" : ""}
-                    >
-                      <td>{order.client ? order.client.name : "Cliente no asignado"}</td>
-                      <td>{statusLabels[order.statusGeneral] || "Desconocido"}</td>
-                      <td>{new Date(order.createdAt).toLocaleDateString()}</td>
-                      <td>{order.createdBy ? order.createdBy.name : "Usuario no asignado"}</td> {/* 🔹 Mostrar vendedor */}
-                      <td>
-                        <button onClick={() => handleOpenOrder(order)} className="details-button">
-                          Ver Detalles
-                        </button>
-                      </td>
-                    </tr>
+                      {expandedRows[`${provider}-${productName}`] &&
+                        productData.details.map((detail, index) => (
+                          <tr key={`${provider}-${productName}-detail-${index}`} className="details-row">
+                            <td colSpan="2" className="sub-row">👤 Cliente: {detail.client}</td>
+                            <td>{detail.quantity} unidades</td>
+                            <td>Estado: {statusLabels[detail.status] || detail.status}</td>
+                            <td>Vendedor: {detail.createdBy || "Usuario no asignado"}</td> {/* 🔹 Mostrar vendedor en los detalles */}
+                          </tr>
+                        ))}
+                    </React.Fragment>
                   ))
-                ) : (
-                  <tr>
-                    <td colSpan="5" className="no-results">⚠️ No hay resultados para los filtros seleccionados.</td>
+                )
+              ) : (
+                <tr>
+                  <td colSpan="5" className="no-results">⚠️ No hay resultados para los filtros seleccionados.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="table-wrapper">
+          <table className="backorders-table">
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+                <th>Vendedor</th> {/* 🔹 Nueva columna */}
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredBackOrders.length > 0 ? (
+                filteredBackOrders.map((order) => (
+                  <tr
+                    key={order._id}
+                    onClick={() => handleOpenOrder(order)}
+                    className={selectedOrderId === order._id ? "highlighted-row" : ""}
+                  >
+                    <td>{order.client ? order.client.name : "Cliente no asignado"}</td>
+                    <td>{statusLabels[order.statusGeneral] || "Desconocido"}</td>
+                    <td>{new Date(order.createdAt).toLocaleDateString()}</td>
+                    <td>{order.createdBy ? order.createdBy.name : "Usuario no asignado"}</td> {/* 🔹 Mostrar vendedor */}
+                    <td>
+                      <button onClick={() => handleOpenOrder(order)} className="details-button">
+                        Ver Detalles
+                      </button>
+                    </td>
                   </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        )}
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5" className="no-results">⚠️ No hay resultados para los filtros seleccionados.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
 
       {selectedOrder && (
         <BackOrderDetailsModal
