@@ -170,18 +170,18 @@ const SellerBackOrders = () => {
         >
           🔄 {loading ? "Actualizando..." : "Refrescar"}
         </button>
+        {/* 🔍 Campo de Búsqueda */}
+        <div className="backorders-search-container">
+          <input
+            type="text"
+            placeholder="Buscar por cliente..."
+            className="search-input mb-4"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
       </div>
 
-      {/* 🔍 Campo de Búsqueda */}
-      <div className="backorders-search-container">
-        <input
-          type="text"
-          placeholder="Buscar por cliente..."
-          className="search-input mb-4"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
 
       {/* 🏷️ Pestañas de Filtrado */}
       <div className="filter-tabs">
