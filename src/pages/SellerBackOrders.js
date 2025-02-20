@@ -163,13 +163,6 @@ const SellerBackOrders = () => {
     <div className="seller-backorders-container">
       <h1 className="title">Mis Backorders</h1>
       <div className="refresh-container">
-        <button
-          className="refresh-button"
-          onClick={fetchBackOrders}
-          disabled={loading}
-        >
-          🔄 {loading ? "Actualizando..." : "Refrescar"}
-        </button>
         {/* 🔍 Campo de Búsqueda */}
         <div className="backorders-search-container">
           <input
@@ -180,6 +173,13 @@ const SellerBackOrders = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
+        <button
+          className="refresh-button"
+          onClick={fetchBackOrders}
+          disabled={loading}
+        >
+          🔄 {loading ? "Actualizando..." : "Refrescar"}
+        </button>
       </div>
 
 
