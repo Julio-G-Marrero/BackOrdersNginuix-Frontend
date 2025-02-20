@@ -514,7 +514,8 @@ const PurchaseManagerBackOrders = () => {
                 <th>Proveedor</th>
                 <th>Producto</th>
                 <th>Cantidad Total</th>
-                <th>Detalles</th> {/* 🔹 Quitamos la columna de "Vendedor" */}
+                <th>Vendedor</th> {/* 🔹 Nueva columna */}
+                <th>Detalles</th>
               </tr>
             </thead>
             <tbody>
@@ -527,31 +528,32 @@ const PurchaseManagerBackOrders = () => {
                         <td>{productName}</td>
                         <td>{productData.totalQuantity}</td>
                         <td>
+                          {productData.details.length > 0
+                            ? productData.details[0]?.createdBy?.name || "Usuario no asignado"
+                            : "Usuario no asignado"}
+                        </td> {/* 🔹 Mostrar vendedor */}
+                        <td>
                           <button className="details-button" onClick={() => toggleRowExpansion(provider, productName)}>
                             {expandedRows[`${provider}-${productName}`] ? "🔼 Ocultar Detalles" : "🔽 Ver Detalles"}
                           </button>
                         </td>
                       </tr>
+
                       {expandedRows[`${provider}-${productName}`] &&
                         productData.details.map((detail, index) => (
-                          <React.Fragment key={`${provider}-${productName}-detail-${index}`}>
-                            <tr className="details-row">
-                              <td colSpan="2" className="sub-row">👤 Cliente: {detail.client}</td>
-                              <td>{detail.quantity} unidades</td>
-                              <td>Estado: {statusLabels[detail.status] || detail.status}</td>
-                            </tr>
-                            <tr className="details-row vendor-row">
-                              <td colSpan="4" className="sub-row">🛠 Vendedor: {detail.createdBy?.name || "Usuario no asignado"}</td>
-                            </tr>
-                          </React.Fragment>
-                      ))}
-
+                          <tr key={`${provider}-${productName}-detail-${index}`} className="details-row">
+                            <td colSpan="2" className="sub-row">👤 Cliente: {detail.client}</td>
+                            <td>{detail.quantity} unidades</td>
+                            <td>Estado: {statusLabels[detail.status] || detail.status}</td>
+                            <td>Vendedor: {detail.createdBy?.name || "Usuario no asignado"}</td> {/* 🔹 Mostrar vendedor en los detalles */}
+                          </tr>
+                        ))}
                     </React.Fragment>
                   ))
                 )
               ) : (
                 <tr>
-                  <td colSpan="4" className="no-results">⚠️ No hay resultados para los filtros seleccionados.</td>
+                  <td colSpan="5" className="no-results">⚠️ No hay resultados para los filtros seleccionados.</td>
                 </tr>
               )}
             </tbody>
@@ -565,7 +567,7 @@ const PurchaseManagerBackOrders = () => {
                 <th>Cliente</th>
                 <th>Estado</th>
                 <th>Fecha</th>
-                <th>Vendedor</th> {/* 🔹 Aquí sigue mostrándose en la vista de Back Orders */}
+                <th>Vendedor</th> {/* 🔹 Nueva columna */}
                 <th>Acción</th>
               </tr>
             </thead>
@@ -580,7 +582,7 @@ const PurchaseManagerBackOrders = () => {
                     <td>{order.client ? order.client.name : "Cliente no asignado"}</td>
                     <td>{statusLabels[order.statusGeneral] || "Desconocido"}</td>
                     <td>{new Date(order.createdAt).toLocaleDateString()}</td>
-                    <td>{order.createdBy ? order.createdBy.name : "Usuario no asignado"}</td> {/* 🔹 Aquí sigue mostrándose */}
+                    <td>{order.createdBy ? order.createdBy.name : "Usuario no asignado"}</td> {/* 🔹 Mostrar vendedor */}
                     <td>
                       <button onClick={() => handleOpenOrder(order)} className="details-button">
                         Ver Detalles
@@ -597,7 +599,6 @@ const PurchaseManagerBackOrders = () => {
           </table>
         </div>
       )}
-
 
       {selectedOrder && (
         <BackOrderDetailsModal
