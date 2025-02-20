@@ -536,7 +536,7 @@ const PurchaseManagerBackOrders = () => {
                       {expandedRows[`${provider}-${productName}`] &&
                         productData.details.map((detail, index) => (
                           <tr key={`${provider}-${productName}-detail-${index}`} className="details-row">
-                            <td colSpan="2" className="sub-row">👤 Cliente: {detail.client}</td>
+                            <td className="sub-row">👤 Cliente: {detail.client}</td>
                             <td>{detail.quantity} unidades</td>
                             <td>Estado: {statusLabels[detail.status] || detail.status}</td>
                             <td>Vendedor: {detail.createdBy?.name || "Usuario no asignado"}</td> {/* 🔹 Mostrar vendedor en los detalles */}
