@@ -228,7 +228,7 @@ const PurchaseManagerBackOrders = () => {
               detail.client,
               detail.quantity,
               statusLabels[detail.status] || detail.status,
-              detail.createdBy || "Usuario no asignado", // 🔹 Agregar el usuario
+              detail.createdBy?.name || detail.createdBy || "Usuario no asignado", // 🔹 Asegurar que `createdBy` no es un ID
             ]);
           });
         });
@@ -246,7 +246,7 @@ const PurchaseManagerBackOrders = () => {
             product.provider,
             statusLabels[product.status] || product.status,
             new Date(order.createdAt).toLocaleDateString(),
-            order.createdBy?.name || "Usuario no asignado", // 🔹 Agregar el usuario
+            order.createdBy?.name || order.createdBy || "Usuario no asignado", // 🔹 Asegurar que `createdBy` no es un ID
           ]);
         });
       });
