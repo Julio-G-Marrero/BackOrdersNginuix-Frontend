@@ -22,11 +22,20 @@ const BackOrderDetailsModal = ({ order, setOrder, onClose }) => {
   const menuRef = useRef(null); 
 
   useEffect(() => {
-    if (order.createdBy) {
-      fetchBackOrderCreator(order.createdBy).then(setCreatorName);
+    if (!order.createdBy) {
+      setCreatorName("Usuario no asignado");
+      return;
+    }
+
+    // 🔹 Si createdBy ya tiene el nombre, úsalo directamente
+    if (typeof order.createdBy === "object" && order.createdBy.name) {
+      setCreatorName(order.createdBy.name);
+    } else {
+      // 🔹 Si solo es un ID, hacer la petición para obtener el usuario
+      fetchBackOrderCreator(order.createdBy);
     }
   }, [order.createdBy]);
-
+  
   const toggleOptionsMenu = (productId) => {
     setOpenOptionsMenu(openOptionsMenu === productId ? null : productId);
   };
@@ -180,11 +189,11 @@ const BackOrderDetailsModal = ({ order, setOrder, onClose }) => {
   const fetchBackOrderCreator = async (userId) => {
     try {
       const response = await axiosInstance.get(`/users/${userId}`);
-      console.log(response.data)
-      return response.data.name || "Usuario desconocido";
+      console.log("Usuario creador del Back Order:", response.data);
+      setCreatorName(response.data.name || "Usuario desconocido");
     } catch (error) {
       console.error("❌ Error al obtener el creador del Back Order:", error);
-      return "Usuario no encontrado";
+      setCreatorName("Usuario no encontrado");
     }
   };
 
