@@ -8,6 +8,7 @@ const Register = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    phone: "",  // 📌 Agregamos el campo de teléfono
     password: "",
     confirmPassword: "",
     role: "vendedor",
@@ -43,6 +44,17 @@ const Register = () => {
       return;
     }
 
+    // 🔹 Validar el formato del teléfono
+    const phoneRegex = /^\+?\d{10,15}$/;  // Permite formato internacional (+52...) o nacional (10-15 dígitos)
+    if (!phoneRegex.test(form.phone)) {
+      Swal.fire({
+        icon: "error",
+        title: "Número de teléfono inválido",
+        text: "Ingresa un número de teléfono válido con al menos 10 dígitos.",
+      });
+      return;
+    }
+
     setLoading(true);
     try {
       await register(form);
@@ -56,7 +68,6 @@ const Register = () => {
 
       // ✅ Redirigir al usuario a la página de login después del registro
       setTimeout(() => navigate("/login"), 2000);
-
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -93,6 +104,18 @@ const Register = () => {
           className="register-input"
         />
 
+        <label className="register-label">Teléfono</label>
+        <input
+          name="phone"
+          placeholder="Ingresa tu número de teléfono"
+          type="tel"
+          pattern="^\+?\d{10,15}$"  // Validación HTML para el teléfono
+          onChange={handleChange}
+          value={form.phone}
+          required
+          className="register-input"
+        />
+
         <label className="register-label">Contraseña</label>
         <input
           name="password"
@@ -120,7 +143,7 @@ const Register = () => {
         </button>
       </form>
       <div className="enlace-pagina">
-        <Link to="/login">¿Ya estas registrado? Inicia Sesión.</Link>
+        <Link to="/login">¿Ya estás registrado? Inicia Sesión.</Link>
       </div>
     </div>
   );
