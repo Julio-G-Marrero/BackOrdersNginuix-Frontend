@@ -8,7 +8,7 @@ const Register = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    phone: "",
+    phone: "+52", // ✅ El campo inicia con +52
     password: "",
     confirmPassword: "",
     role: "vendedor",
@@ -18,29 +18,20 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    // Autoformato del teléfono
-    if (name === "phone") {
-      let formattedPhone = value.replace(/\D/g, ""); // Remueve caracteres no numéricos
-
-      if (formattedPhone.startsWith("52")) {
-        formattedPhone = `+${formattedPhone}`;
-      } else if (formattedPhone.length >= 10) {
-        formattedPhone = `+52${formattedPhone}`;
-      }
-
-      setForm({ ...form, phone: formattedPhone });
-      validatePhone(formattedPhone);
-      return;
+  const handlePhoneChange = (e) => {
+    let value = e.target.value.replace(/\D/g, ""); // 🔹 Solo números
+    if (!value.startsWith("52")) {
+      value = "52"; // 🔹 Previene la eliminación del +52
     }
-
-    setForm({ ...form, [name]: value });
+    if (value.length > 12) {
+      value = value.slice(0, 12); // 🔹 Máximo 12 caracteres (+52 + 10 dígitos)
+    }
+    setForm({ ...form, phone: `+${value}` });
+    validatePhone(`+${value}`);
   };
 
   const validatePhone = (phone) => {
-    const phoneRegex = /^\+52\d{10}$/; // Solo acepta formato "+52" seguido de 10 dígitos
+    const phoneRegex = /^\+52\d{10}$/; // 🔹 Debe ser +52 seguido de 10 dígitos
     setPhoneValid(phoneRegex.test(phone));
   };
 
@@ -51,7 +42,7 @@ const Register = () => {
       Swal.fire({
         icon: "error",
         title: "Número de teléfono inválido",
-        text: "El número debe estar en formato +52XXXXXXXXXX con 10 dígitos.",
+        text: "Debe tener el formato +52XXXXXXXXXX con 10 dígitos.",
       });
       return;
     }
@@ -60,7 +51,7 @@ const Register = () => {
       Swal.fire({
         icon: "warning",
         title: "Contraseña demasiado corta",
-        text: "La contraseña debe tener al menos 6 caracteres.",
+        text: "Debe tener al menos 6 caracteres.",
       });
       return;
     }
@@ -105,7 +96,7 @@ const Register = () => {
         <input
           name="name"
           placeholder="Ingresa tu nombre"
-          onChange={handleChange}
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
           value={form.name}
           required
           className="register-input"
@@ -116,7 +107,7 @@ const Register = () => {
           name="email"
           placeholder="Ingresa tu correo electrónico"
           type="email"
-          onChange={handleChange}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
           value={form.email}
           required
           className="register-input"
@@ -125,21 +116,20 @@ const Register = () => {
         <label className="register-label">Teléfono</label>
         <input
           name="phone"
-          placeholder="+52XXXXXXXXXX"
           type="tel"
-          onChange={handleChange}
           value={form.phone}
+          onChange={handlePhoneChange}
           required
           className={`register-input ${phoneValid ? "valid" : "invalid"}`}
         />
-        {!phoneValid && <small className="error-text">Formato inválido. Ejemplo: +528445379269</small>}
+        {!phoneValid && <small className="error-text">Formato inválido</small>}
 
         <label className="register-label">Contraseña</label>
         <input
           name="password"
           placeholder="Ingresa tu contraseña"
           type="password"
-          onChange={handleChange}
+          onChange={(e) => setForm({ ...form, password: e.target.value })}
           value={form.password}
           required
           className="register-input"
@@ -150,7 +140,7 @@ const Register = () => {
           name="confirmPassword"
           placeholder="Repite tu contraseña"
           type="password"
-          onChange={handleChange}
+          onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
           value={form.confirmPassword}
           required
           className="register-input"
