@@ -2,29 +2,60 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "../services/authService";
 import Swal from "sweetalert2";
-import "./Register.css"; // ✅ Importa el archivo de estilos
+import "./Register.css";
 
 const Register = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    phone: "",  // 📌 Agregamos el campo de teléfono
+    phone: "",
     password: "",
     confirmPassword: "",
     role: "vendedor",
   });
 
+  const [phoneValid, setPhoneValid] = useState(true);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // ✅ Hook para redireccionar
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    // Autoformato del teléfono
+    if (name === "phone") {
+      let formattedPhone = value.replace(/\D/g, ""); // Remueve caracteres no numéricos
+
+      if (formattedPhone.startsWith("52")) {
+        formattedPhone = `+${formattedPhone}`;
+      } else if (formattedPhone.length >= 10) {
+        formattedPhone = `+52${formattedPhone}`;
+      }
+
+      setForm({ ...form, phone: formattedPhone });
+      validatePhone(formattedPhone);
+      return;
+    }
+
+    setForm({ ...form, [name]: value });
+  };
+
+  const validatePhone = (phone) => {
+    const phoneRegex = /^\+52\d{10}$/; // Solo acepta formato "+52" seguido de 10 dígitos
+    setPhoneValid(phoneRegex.test(phone));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 🔹 Validación de contraseña mínima de 6 caracteres
+    if (!phoneValid) {
+      Swal.fire({
+        icon: "error",
+        title: "Número de teléfono inválido",
+        text: "El número debe estar en formato +52XXXXXXXXXX con 10 dígitos.",
+      });
+      return;
+    }
+
     if (form.password.length < 6) {
       Swal.fire({
         icon: "warning",
@@ -34,23 +65,11 @@ const Register = () => {
       return;
     }
 
-    // 🔹 Validar que ambas contraseñas coincidan
     if (form.password !== form.confirmPassword) {
       Swal.fire({
         icon: "error",
         title: "Las contraseñas no coinciden",
         text: "Verifica que ambas contraseñas sean iguales.",
-      });
-      return;
-    }
-
-    // 🔹 Validar el formato del teléfono
-    const phoneRegex = /^\+?\d{10,15}$/;  // Permite formato internacional (+52...) o nacional (10-15 dígitos)
-    if (!phoneRegex.test(form.phone)) {
-      Swal.fire({
-        icon: "error",
-        title: "Número de teléfono inválido",
-        text: "Ingresa un número de teléfono válido con al menos 10 dígitos.",
       });
       return;
     }
@@ -66,7 +85,6 @@ const Register = () => {
         showConfirmButton: false,
       });
 
-      // ✅ Redirigir al usuario a la página de login después del registro
       setTimeout(() => navigate("/login"), 2000);
     } catch (error) {
       Swal.fire({
@@ -107,14 +125,14 @@ const Register = () => {
         <label className="register-label">Teléfono</label>
         <input
           name="phone"
-          placeholder="Ingresa tu número de teléfono"
+          placeholder="+52XXXXXXXXXX"
           type="tel"
-          pattern="^\+?\d{10,15}$"  // Validación HTML para el teléfono
           onChange={handleChange}
           value={form.phone}
           required
-          className="register-input"
+          className={`register-input ${phoneValid ? "valid" : "invalid"}`}
         />
+        {!phoneValid && <small className="error-text">Formato inválido. Ejemplo: +528445379269</small>}
 
         <label className="register-label">Contraseña</label>
         <input

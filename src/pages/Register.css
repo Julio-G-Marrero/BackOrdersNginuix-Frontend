@@ -71,3 +71,26 @@
     width: -webkit-fill-available;
 }
 
+.register-input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.register-input.valid {
+  border-color: green;
+}
+
+.register-input.invalid {
+  border-color: red;
+}
+
+.error-text {
+  color: red;
+  font-size: 14px;
+  margin-top: -5px;
+  display: block;
+}
