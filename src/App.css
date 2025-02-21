@@ -169,7 +169,7 @@ button:hover {
   }
 }
 /* Celulares (hasta 767px de ancho) */
-@media (max-width: 425px) {
+@media (max-width: 470px) {
   .container.container--registrarBackorder {
     max-width: 390px;
   }
