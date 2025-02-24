@@ -507,52 +507,60 @@ const PurchaseManagerBackOrders = () => {
         </div>
       </div>
       {aggregatedView ? (
-        <div className="table-wrapper">
-          <table className="backorders-table">
-            <thead>
+      <div className="table-wrapper">
+        <table className="backorders-table">
+          <thead>
+            <tr>
+              <th>Proveedor</th>
+              <th>SKU</th>
+              <th>Descripción</th>
+              <th>Cantidad Total</th>
+              <th>Detalles</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.keys(filteredAggregatedBackOrders || {}).length > 0 ? (
+              Object.entries(filteredAggregatedBackOrders).map(([provider, products]) =>
+                Object.entries(products).map(([sku, productData]) => (
+                  <React.Fragment key={`${provider}-${sku}`}>
+                    <tr>
+                      <td>{provider}</td>
+                      <td>{sku}</td>
+                      <td>{productData.description || "Sin descripción"}</td>
+                      <td>{productData.totalQuantity}</td>
+                      <td>
+                        <button
+                          className="details-button"
+                          onClick={() => toggleRowExpansion(provider, sku)}
+                        >
+                          {expandedRows[`${provider}-${sku}`] ? "🔼 Ocultar Detalles" : "🔽 Ver Detalles"}
+                        </button>
+                      </td>
+                    </tr>
+                    {expandedRows[`${provider}-${sku}`] &&
+                      productData.details.map((detail, index) => (
+                        <tr key={`${provider}-${sku}-detail-${index}`} className="details-row">
+                          <td className="sub-row">👤 Cliente: {detail.client}</td>
+                          <td>{detail.quantity} unidades</td>
+                          <td>Estado: {statusLabels[detail.status] || detail.status}</td>
+                          <td>
+                            Vendedor: {detail.createdBy?.name || detail.createdBy || "Usuario no asignado"}
+                          </td>
+                        </tr>
+                      ))}
+                  </React.Fragment>
+                ))
+              )
+            ) : (
               <tr>
-                <th>Proveedor</th>
-                <th>Producto</th>
-                <th>Cantidad Total</th>
-                <th>Detalles</th>
+                <td colSpan="5" className="no-results">
+                  ⚠️ No hay resultados para los filtros seleccionados.
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {Object.keys(filteredAggregatedBackOrders || {}).length > 0 ? (
-                Object.entries(filteredAggregatedBackOrders).map(([provider, products]) =>
-                  Object.entries(products).map(([productName, productData]) => (
-                    <React.Fragment key={`${provider}-${productName}`}>
-                      <tr>
-                        <td>{provider}</td>
-                        <td>{productName}</td>
-                        <td>{productData.totalQuantity}</td>
-                        <td>
-                          <button className="details-button" onClick={() => toggleRowExpansion(provider, productName)}>
-                            {expandedRows[`${provider}-${productName}`] ? "🔼 Ocultar Detalles" : "🔽 Ver Detalles"}
-                          </button>
-                        </td>
-                      </tr>
-
-                      {expandedRows[`${provider}-${productName}`] &&
-                        productData.details.map((detail, index) => (
-                          <tr key={`${provider}-${productName}-detail-${index}`} className="details-row">
-                            <td className="sub-row">👤 Cliente: {detail.client}</td>
-                            <td>{detail.quantity} unidades</td>
-                            <td>Estado: {statusLabels[detail.status] || detail.status}</td>
-                            <td>Vendedor: {detail.createdBy?.name || "Usuario no asignado"}</td> {/* 🔹 Mostrar vendedor en los detalles */}
-                          </tr>
-                        ))}
-                    </React.Fragment>
-                  ))
-                )
-              ) : (
-                <tr>
-                  <td colSpan="5" className="no-results">⚠️ No hay resultados para los filtros seleccionados.</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+            )}
+          </tbody>
+        </table>
+      </div>
       ) : (
         <div className="table-wrapper">
           <table className="backorders-table">
