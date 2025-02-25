@@ -173,6 +173,15 @@ button:hover {
   .container.container--registrarBackorder {
     max-width: 390px;
   }
+  .modal-box.modal-box-seller {
+    max-width: 390px !important;
+  }
+  .backorder-modal {
+    max-width: 390px !important;
+  }
+  .table-responsive {
+    overflow: scroll;
+  }
 }
 
 /* Tabletas (768px a 1024px de ancho) */
