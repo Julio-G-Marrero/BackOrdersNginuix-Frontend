@@ -71,7 +71,13 @@ const Login = () => {
         title: "Inicio de sesión exitoso",
       });
 
-      navigate("/"); // ✅ Redirigir al dashboard
+      // 🔹 **Redirigir según el rol del usuario**
+      if (user.role === "vendedor") {
+        navigate("/backorders/new");
+      } else {
+        navigate("/"); // ✅ Otro rol → Dashboard
+      }
+
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -112,7 +118,7 @@ const Login = () => {
           {loading ? "Cargando..." : "Iniciar Sesión"}
         </button>
         <div className="enlace-pagina">
-          <Link to="/register">¿No estas registrado? Registrate.</Link>
+          <Link to="/register">¿No estás registrado? Regístrate.</Link>
         </div>
       </form>
     </div>

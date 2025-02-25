@@ -194,4 +194,6 @@ button:hover {
 html, body {
   touch-action: manipulation; /* Evita zoom con doble toque */
 }
-
+.container.container--registrarBackorder {
+  margin-top: 70px;
+}

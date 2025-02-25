@@ -45,9 +45,6 @@ const Navbar = () => {
             <p className="user-info">Bienvenido, {user.name}</p>
 
             <ul className="sidebar-links">
-              <li>
-                <Link to="/" onClick={toggleMenu}>Inicio</Link>
-              </li>
 
               {/* 🔹 Opciones para ADMINISTRADOR */}
               {user.role === "admin" && (
@@ -55,6 +52,9 @@ const Navbar = () => {
                   {/* <li>
                     <Link to="/admin" onClick={toggleMenu}>Dashboard</Link>
                   </li> */}
+                  <li>
+                    <Link to="/" onClick={toggleMenu}>Inicio</Link>
+                  </li>
                   <li>
                     <Link to="/admin/users" onClick={toggleMenu}>Gestión de Usuarios</Link>
                   </li>
@@ -67,6 +67,9 @@ const Navbar = () => {
               {/* 🔹 Opciones para GERENTE */}
               {user.role === "gerente" && (
                 <>
+                  <li>
+                    <Link to="/" onClick={toggleMenu}>Inicio</Link>
+                  </li>
                   <li>
                     <Link to="/backorders/purchase" onClick={toggleMenu}>Gestionar Back Orders</Link>
                   </li>
