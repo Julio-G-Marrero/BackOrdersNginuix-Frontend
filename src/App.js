@@ -46,6 +46,10 @@ const AppLayout = ({ children }) => {
     </div>
   );
 };
+/**zoom celular */
+document.addEventListener("gesturestart", function (e) {
+  e.preventDefault();
+});
 
 const App = () => {
   return (

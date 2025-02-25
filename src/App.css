@@ -190,3 +190,8 @@ button:hover {
     background-color: lightgreen;
   }
 }
+/*zoom celular*/
+html, body {
+  touch-action: manipulation; /* Evita zoom con doble toque */
+}
+
