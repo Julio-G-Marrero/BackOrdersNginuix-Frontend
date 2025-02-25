@@ -161,7 +161,16 @@ const SellerBackOrders = () => {
 
   return (
     <div className="seller-backorders-container">
-      <h1 className="title">Mis Backorders</h1>
+      <div className="container-refresh-seller">
+        <button
+          className="refresh-button"
+          onClick={fetchBackOrders}
+          disabled={loading}
+        >
+          🔄 {loading ? "Actualizando..." : "Refrescar"}
+        </button>
+        <h1 className="title">Mis Backorders</h1>
+      </div>
       <div className="refresh-container">
         {/* 🔍 Campo de Búsqueda */}
         <div className="backorders-search-container">
@@ -173,13 +182,6 @@ const SellerBackOrders = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <button
-          className="refresh-button"
-          onClick={fetchBackOrders}
-          disabled={loading}
-        >
-          🔄 {loading ? "Actualizando..." : "Refrescar"}
-        </button>
       </div>
 
 

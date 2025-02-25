@@ -168,6 +168,11 @@ button:hover {
     transform: scale(1);
   }
 }
+.container-refresh-seller {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
 /* Celulares (hasta 767px de ancho) */
 @media (max-width: 470px) {
   .container.container--registrarBackorder {
@@ -182,7 +187,19 @@ button:hover {
   .table-responsive {
     overflow: scroll;
   }
+  button.tab-button.active {
+    font-size: 17px;
+  }
+  button.tab-button {
+    font-size: 17px;
+  }
+  .container-refresh-seller {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
 }
+
 
 /* Tabletas (768px a 1024px de ancho) */
 @media (min-width: 768px) and (max-width: 1024px) {
