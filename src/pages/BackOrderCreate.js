@@ -17,7 +17,9 @@ const BackOrderCreate = () => {
   const [backOrderProducts, setBackOrderProducts] = useState([]);
   const clientSuggestionsRef = useRef([]);
   const productSuggestionsRef = useRef([]);
-  
+  const clientSuggestionsContainerRef = useRef(null);
+  const productSuggestionsContainerRef = useRef(null);
+
   useEffect(() => {
     const fetchClients = async () => {
       if (search.trim() === "") {
@@ -33,6 +35,28 @@ const BackOrderCreate = () => {
     };
     fetchClients();
   }, [search]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        clientSuggestionsContainerRef.current &&
+        !clientSuggestionsContainerRef.current.contains(event.target)
+      ) {
+        setFilteredClients([]);
+      }
+      if (
+        productSuggestionsContainerRef.current &&
+        !productSuggestionsContainerRef.current.contains(event.target)
+      ) {
+        setFilteredProducts([]);
+      }
+    };
+  
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     if (highlightedClientIndex >= 0 && clientSuggestionsRef.current[highlightedClientIndex]) {
@@ -202,36 +226,46 @@ const BackOrderCreate = () => {
     <div className="container container--registrarBackorder">
       <h1 className="title">Registrar Back Order</h1>
       <form onSubmit={handleSubmit} className="form">
-        <div className="form-group input-container">
-          <label>Buscar Cliente</label>
-          <input
-            type="text"
-            placeholder="Buscar cliente..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={handleClientKeyDown}
-          />
-          {filteredClients.length > 0 && (
-            <ul className="suggestions">
-              {filteredClients.map((client, index) => (
-                <li
-                  key={client._id}
-                  ref={(el) => (clientSuggestionsRef.current[index] = el)}
-                  onClick={() => handleClientSelect(client)}
-                  className={`suggestion-item ${highlightedClientIndex === index ? "highlighted" : ""}`}
-                >
-                  {client.name} - {client.customerNumber}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+      <div className="form-group input-container" ref={clientSuggestionsContainerRef}>
+        <label>Buscar Cliente</label>
+        <input
+          type="text"
+          placeholder="Buscar cliente..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={handleClientKeyDown}
+          onFocus={() => {
+            if (search.trim() !== "") {
+              // Ejecutar búsqueda al enfocar si hay texto en el input
+              axiosInstance
+                .get("/customers", { params: { search, limit: 10 } })
+                .then((response) => setFilteredClients(response.data.customers || []))
+                .catch((error) => console.error("Error al cargar clientes:", error));
+            }
+          }}
+        />
+        {filteredClients.length > 0 && (
+          <ul className="suggestions">
+            {filteredClients.map((client, index) => (
+              <li
+                key={client._id}
+                ref={(el) => (clientSuggestionsRef.current[index] = el)}
+                onClick={() => handleClientSelect(client)}
+                className={`suggestion-item ${highlightedClientIndex === index ? "highlighted" : ""}`}
+              >
+                {client.name} - {client.customerNumber}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
 
         {selectedClient && (
           <p><strong>Cliente Seleccionado:</strong> {selectedClient.name}</p>
         )}
 
-        <div className="form-group input-container">
+        {/* Campo de búsqueda de productos */}
+        <div className="form-group input-container" ref={productSuggestionsContainerRef}>
           <label>Buscar Productos</label>
           <input
             type="text"
@@ -239,7 +273,15 @@ const BackOrderCreate = () => {
             value={productSearch}
             onChange={(e) => setProductSearch(e.target.value)}
             onKeyDown={handleProductKeyDown}
-            onKeyPress={preventFormSubmitOnEnter}
+            onFocus={() => {
+              if (productSearch.trim() !== "") {
+                // Ejecutar búsqueda al enfocar si hay texto en el input
+                axiosInstance
+                  .get("/products", { params: { search: productSearch } })
+                  .then((response) => setFilteredProducts(response.data.products || []))
+                  .catch((error) => console.error("Error al buscar productos:", error));
+              }
+            }}
           />
           {filteredProducts.length > 0 && (
             <ul className="suggestions">
