@@ -966,6 +966,15 @@ td.actions-buttons {
   }
   
 }
+@media (max-width: 768px) {
+  .backorder-modal {
+      max-width: 700px;
+      max-height: 95vh;
+  }
+}
+.table-responsive {
+  overflow: scroll;
+}
 button {
   width: auto;
   min-width: fit-content;

@@ -46,4 +46,12 @@
     border-radius: 4px;
     width: 100%;
   }
-  
+  /* Tabletas (768px a 1024px de ancho) */
+@media (min-width: 768px) {
+  .options-dropdown {
+    left: -180px;
+  }
+} 
+.options-dropdown {
+  left: -20px;
+}   
