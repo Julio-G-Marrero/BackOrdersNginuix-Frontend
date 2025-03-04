@@ -560,6 +560,7 @@ const BackOrderDetailsModal = ({ order, setOrder, onClose }) => {
           <thead>
             <tr>
               <th>Producto</th>
+              <th>SKU</th>
               <th>Cantidad</th>
               <th>Comentarios</th> {/* ✅ Nueva columna de comentarios */}
               <th>Estado</th>
@@ -570,6 +571,7 @@ const BackOrderDetailsModal = ({ order, setOrder, onClose }) => {
             {order.products?.map((product) => (
               <tr key={product._id}>
                 <td>{product.product?.description || "Producto sin descripción"}</td>
+                <td>{product.internalCode}</td>
                 <td>{product.quantity}</td>
                 <td>{product.comments || "Sin comentarios"}</td> {/* ✅ Muestra los comentarios */}
                 <td>{statusMap[product.status] || "Desconocido"}</td>

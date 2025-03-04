@@ -895,7 +895,7 @@ td.actions-buttons {
 .backorder-modal {
   display: flex;
   flex-direction: column;
-  max-width: 850px; /* Limitar el ancho máximo */
+  max-width: 950px; /* Limitar el ancho máximo */
   max-height: 90vh; /* Limitar el alto máximo */
   background: white;
   border-radius: 10px;
