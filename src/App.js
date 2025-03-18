@@ -76,6 +76,7 @@ document.addEventListener("gesturestart", function (e) {
 const App = () => {
   const navigate = useNavigate();
   const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000; // 3 días en milisegundos
+  const ONE_DAY_IN_MS = 24 * 60 * 60 * 1000; // 1 día en milisegundos
 
   useEffect(() => {
     const checkTokenValidity = () => {
@@ -101,14 +102,14 @@ const App = () => {
     };
 
     // Ejecutar la verificación cada 3 días
-    const interval = setInterval(checkTokenValidity, THREE_DAYS_IN_MS);
+    const interval = setInterval(checkTokenValidity, ONE_DAY_IN_MS);
 
     // Ejecutar la verificación una vez al montar la app
     checkTokenValidity();
 
     return () => clearInterval(interval);
   }, [navigate]);
-  
+
   return (
     <Router>
       <AppLayout>
