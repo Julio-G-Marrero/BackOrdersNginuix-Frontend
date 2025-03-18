@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ONE_DAY_IN_MS = 24 * 60 * 60 * 1000; // 1 día en milisegundos
