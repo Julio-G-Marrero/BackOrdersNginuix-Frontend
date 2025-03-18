@@ -14,21 +14,43 @@ import ManageUsers from "./pages/admin/ManageUsers";
 import ResetPasswords from "./pages/admin/ResetPasswords";
 import Navbar from "./components/Navbar"; // ✅ Navbar siempre se renderiza
 import "./App.css"; // ✅ Estilos globales
+import { useNavigate } from "react-router-dom";
+
+const isTokenValid = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user || !user.token) return false;
+
+  try {
+    const payload = JSON.parse(atob(user.token.split(".")[1])); // Decodificar el payload del token JWT
+    const currentTime = Math.floor(Date.now() / 1000); // Tiempo actual en segundos
+
+    if (payload.exp < currentTime) {
+      localStorage.removeItem("user"); // Eliminar sesión si el token ha expirado
+      return false;
+    }
+    return true;
+  } catch (error) {
+    localStorage.removeItem("user"); // Eliminar sesión si el token es inválido
+    return false;
+  }
+};
 
 // 🔹 Componente para PROTEGER rutas privadas
 const PrivateRoute = ({ children, allowedRoles }) => {
-  const user = JSON.parse(localStorage.getItem("user")); // ✅ Obtener usuario del localStorage
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  if (!user) {
-    return <Navigate to="/login" />; // Redirigir si no está autenticado
+  if (!user || !isTokenValid()) {
+    localStorage.removeItem("user"); // ✅ Eliminar sesión si el token es inválido
+    return <Navigate to="/login" />;
   }
 
   if (allowedRoles && !allowedRoles.includes(user.role)) {
-    return <Navigate to="/" />; // Redirigir si no tiene permisos
+    return <Navigate to="/" />;
   }
 
   return children;
 };
+
 
 // 🔹 Componente que gestiona la estructura de la app
 const AppLayout = ({ children }) => {
@@ -52,6 +74,41 @@ document.addEventListener("gesturestart", function (e) {
 });
 
 const App = () => {
+  const navigate = useNavigate();
+  const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000; // 3 días en milisegundos
+
+  useEffect(() => {
+    const checkTokenValidity = () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (!user || !user.token) {
+        localStorage.removeItem("user");
+        navigate("/login");
+        return;
+      }
+
+      try {
+        const payload = JSON.parse(atob(user.token.split(".")[1]));
+        const currentTime = Math.floor(Date.now() / 1000);
+
+        if (payload.exp < currentTime) {
+          localStorage.removeItem("user");
+          navigate("/login");
+        }
+      } catch (error) {
+        localStorage.removeItem("user");
+        navigate("/login");
+      }
+    };
+
+    // Ejecutar la verificación cada 3 días
+    const interval = setInterval(checkTokenValidity, THREE_DAYS_IN_MS);
+
+    // Ejecutar la verificación una vez al montar la app
+    checkTokenValidity();
+
+    return () => clearInterval(interval);
+  }, [navigate]);
+  
   return (
     <Router>
       <AppLayout>
