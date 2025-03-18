@@ -14,7 +14,7 @@ import ManageUsers from "./pages/admin/ManageUsers";
 import ResetPasswords from "./pages/admin/ResetPasswords";
 import Navbar from "./components/Navbar";
 import AuthChecker from "./components/AuthChecker"; // ✅ Importar el validador de token
-import "./App.css"; // ✅ Estilos globales
+import "./App.css";
 
 const isTokenValid = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -40,7 +40,7 @@ const PrivateRoute = ({ children, allowedRoles }) => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (!user || !isTokenValid()) {
-    localStorage.removeItem("user"); // ✅ Eliminar sesión si el token es inválido
+    localStorage.removeItem("user");
     return <Navigate to="/login" />;
   }
 
@@ -67,15 +67,10 @@ const AppLayout = ({ children }) => {
   );
 };
 
-/**zoom celular */
-document.addEventListener("gesturestart", function (e) {
-  e.preventDefault();
-});
-
 const App = () => {
   return (
     <Router>
-      <AuthChecker /> {/* ✅ Comprobación del token en segundo plano */}
+      <AuthChecker /> {/* ✅ Validación del token en segundo plano */}
       <AppLayout>
         <Routes>
           {/* 🔹 Rutas públicas */}

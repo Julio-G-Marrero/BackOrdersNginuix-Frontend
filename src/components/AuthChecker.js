@@ -1,17 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ONE_DAY_IN_MS = 24 * 60 * 60 * 1000; // 1 día en milisegundos
 
 const AuthChecker = () => {
   const navigate = useNavigate();
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     const checkTokenValidity = () => {
       const user = JSON.parse(localStorage.getItem("user"));
+
+      // 🚨 Si no hay usuario, NO hacer nada hasta que inicie sesión
       if (!user || !user.token) {
-        localStorage.removeItem("user");
-        navigate("/login");
+        setChecked(true); // ✅ Permitir que la app se cargue sin redirigir
         return;
       }
 
@@ -27,18 +29,17 @@ const AuthChecker = () => {
         localStorage.removeItem("user");
         navigate("/login");
       }
+
+      setChecked(true); // ✅ Solo después de verificar, marcar como comprobado
     };
 
-    // Ejecutar la verificación al cargar la app
-    checkTokenValidity();
-
-    // Configurar la verificación cada 24 horas
-    const interval = setInterval(checkTokenValidity, ONE_DAY_IN_MS);
+    checkTokenValidity(); // Verificar en el primer render
+    const interval = setInterval(checkTokenValidity, ONE_DAY_IN_MS); // Verificar cada día
 
     return () => clearInterval(interval);
   }, [navigate]);
 
-  return null; // No renderiza nada, solo ejecuta la verificación en segundo plano
+  return checked ? null : <div>Cargando...</div>; // Opcional: pantalla de carga
 };
 
 export default AuthChecker;
