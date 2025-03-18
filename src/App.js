@@ -12,40 +12,19 @@ import Dashboard from "./pages/Dashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import ManageUsers from "./pages/admin/ManageUsers";
 import ResetPasswords from "./pages/admin/ResetPasswords";
-import Navbar from "./components/Navbar";
-import AuthChecker from "./components/AuthChecker"; // ✅ Importar el validador de token
-import "./App.css";
-
-const isTokenValid = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  if (!user || !user.token) return false;
-
-  try {
-    const payload = JSON.parse(atob(user.token.split(".")[1]));
-    const currentTime = Math.floor(Date.now() / 1000);
-
-    if (payload.exp < currentTime) {
-      localStorage.removeItem("user");
-      return false;
-    }
-    return true;
-  } catch (error) {
-    localStorage.removeItem("user");
-    return false;
-  }
-};
+import Navbar from "./components/Navbar"; // ✅ Navbar siempre se renderiza
+import "./App.css"; // ✅ Estilos globales
 
 // 🔹 Componente para PROTEGER rutas privadas
 const PrivateRoute = ({ children, allowedRoles }) => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user")); // ✅ Obtener usuario del localStorage
 
-  if (!user || !isTokenValid()) {
-    localStorage.removeItem("user");
-    return <Navigate to="/login" />;
+  if (!user) {
+    return <Navigate to="/login" />; // Redirigir si no está autenticado
   }
 
   if (allowedRoles && !allowedRoles.includes(user.role)) {
-    return <Navigate to="/" />;
+    return <Navigate to="/" />; // Redirigir si no tiene permisos
   }
 
   return children;
@@ -59,6 +38,7 @@ const AppLayout = ({ children }) => {
 
   return (
     <div className="app-container">
+      {/* ✅ Navbar SIEMPRE visible, excepto en Login/Register */}
       {!isNavbarHidden && <Navbar />}
       <div className={`main-content ${isNavbarHidden ? "no-padding" : ""}`}>
         {children}
@@ -66,11 +46,14 @@ const AppLayout = ({ children }) => {
     </div>
   );
 };
+/**zoom celular */
+document.addEventListener("gesturestart", function (e) {
+  e.preventDefault();
+});
 
 const App = () => {
   return (
     <Router>
-      <AuthChecker /> {/* ✅ Validación del token en segundo plano */}
       <AppLayout>
         <Routes>
           {/* 🔹 Rutas públicas */}
