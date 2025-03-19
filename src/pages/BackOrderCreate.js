@@ -221,6 +221,24 @@ const BackOrderCreate = () => {
     }
   };
 
+  const handleRemoveClient = async () => {
+    setSelectedClient(null); // ✅ Quita el cliente del estado
+    console.log('eliminar cliente borrador')
+    try {
+      if (userId) {
+        console.log("🔄 Actualizando borrador tras eliminar cliente...");
+        await axiosInstance.post("/backorder-drafts", {
+          userId,
+          client: null, // ✅ Se envía `null` para eliminar el cliente
+          products: backOrderProducts, // ✅ Mantiene los productos actuales
+        });
+        console.log("✅ Borrador actualizado tras eliminar cliente");
+      }
+    } catch (error) {
+      console.error("❌ Error al actualizar el borrador tras eliminar cliente:", error);
+    }
+  };
+
   const preventFormSubmitOnEnter = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -318,7 +336,7 @@ const BackOrderCreate = () => {
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <p><strong>Cliente Seleccionado:</strong> {selectedClient.name}</p>
           <button 
-            onClick={() => setSelectedClient(null)} 
+            onClick={handleRemoveClient} // ✅ Llama a la función
             style={{
               background: "red",
               color: "white",
@@ -332,6 +350,7 @@ const BackOrderCreate = () => {
           </button>
         </div>
       )}
+
 
         {/* Campo de búsqueda de productos */}
         <div className="form-group input-container" ref={productSuggestionsContainerRef}>
