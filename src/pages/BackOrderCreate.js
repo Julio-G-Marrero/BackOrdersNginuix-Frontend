@@ -5,11 +5,13 @@ import QuantityInput from "../components/QuantityInput";
 import Swal from "sweetalert2";
 
 const BackOrderCreate = ({ user }) => {
+  const userId = user?.id; // ✅ Obtener el userId del usuario autenticado
+
   if (!user) {
     console.error("❌ No se encontró el usuario.");
     return <p>Error: Debes iniciar sesión</p>;
   }
-  const userId = user.id; // ✅ Ahora `user` siempre estará definido
+
   const [clients, setClients] = useState([]);
   const [filteredClients, setFilteredClients] = useState([]);
   const [search, setSearch] = useState("");
@@ -42,25 +44,30 @@ const BackOrderCreate = ({ user }) => {
   }, [search]);
   
   useEffect(() => {
-    // Cargar borrador al iniciar
     const loadDraft = async () => {
       try {
+        console.log("📤 Solicitando borrador del usuario:", userId);
         const response = await axiosInstance.get(`/backorder-drafts/${userId}`);
         if (response.data) {
+          console.log("✅ Borrador recibido:", response.data);
           setSelectedClient(response.data.client);
           setBackOrderProducts(response.data.products);
         }
       } catch (error) {
-        console.log("No hay borrador guardado.");
+        console.log("⚠️ No hay borrador guardado o error al cargar:", error);
       }
     };
-    loadDraft();
+
+    if (userId) {
+      loadDraft();
+    }
   }, [userId]);
 
+  // 🔹 **Guardar el borrador automáticamente cuando cambian datos**
   useEffect(() => {
-    // Guardar borrador automáticamente cuando cambian datos
     const saveDraft = async () => {
       if (selectedClient || backOrderProducts.length > 0) {
+        console.log("💾 Guardando borrador...");
         await axiosInstance.post("/backorder-drafts", {
           userId,
           client: selectedClient,
@@ -68,8 +75,16 @@ const BackOrderCreate = ({ user }) => {
         });
       }
     };
-    saveDraft();
+
+    if (userId) {
+      saveDraft();
+    }
   }, [selectedClient, backOrderProducts, userId]);
+
+  // 🔹 **Confirmar que los datos se han cargado correctamente**
+  useEffect(() => {
+    console.log("🔄 Estado actualizado:", { selectedClient, backOrderProducts });
+  }, [selectedClient, backOrderProducts]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
