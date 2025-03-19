@@ -4,7 +4,7 @@ import axiosInstance from "../services/axiosInstance";
 import QuantityInput from "../components/QuantityInput";
 import Swal from "sweetalert2";
 
-const BackOrderCreate = () => {
+const BackOrderCreate = ({ user }) => {
   const userId = user?.id;
   if (!userId) {
     console.error("❌ No se encontró el `userId`");
