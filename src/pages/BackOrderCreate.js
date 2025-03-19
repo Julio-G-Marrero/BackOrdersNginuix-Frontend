@@ -314,9 +314,24 @@ const BackOrderCreate = () => {
         )}
       </div>
 
-        {selectedClient && (
+      {selectedClient && (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <p><strong>Cliente Seleccionado:</strong> {selectedClient.name}</p>
-        )}
+          <button 
+            onClick={() => setSelectedClient(null)} 
+            style={{
+              background: "red",
+              color: "white",
+              border: "none",
+              padding: "5px 10px",
+              cursor: "pointer",
+              borderRadius: "5px"
+            }}
+          >
+            X
+          </button>
+        </div>
+      )}
 
         {/* Campo de búsqueda de productos */}
         <div className="form-group input-container" ref={productSuggestionsContainerRef}>
