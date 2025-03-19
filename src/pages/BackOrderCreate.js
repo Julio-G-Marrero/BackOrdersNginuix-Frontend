@@ -5,11 +5,11 @@ import QuantityInput from "../components/QuantityInput";
 import Swal from "sweetalert2";
 
 const BackOrderCreate = ({ user }) => {
-  const userId = user?.id;
-  if (!userId) {
-    console.error("❌ No se encontró el `userId`");
-    return <p>Error: Usuario no autenticado</p>;
+  if (!user) {
+    console.error("❌ No se encontró el usuario.");
+    return <p>Error: Debes iniciar sesión</p>;
   }
+  const userId = user.id; // ✅ Ahora `user` siempre estará definido
   const [clients, setClients] = useState([]);
   const [filteredClients, setFilteredClients] = useState([]);
   const [search, setSearch] = useState("");
