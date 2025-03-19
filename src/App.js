@@ -66,7 +66,7 @@ const App = () => {
           <Route path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           <Route path="/customers" element={<PrivateRoute><CustomerManagement /></PrivateRoute>} />
           <Route path="/products" element={<PrivateRoute><ProductManagement /></PrivateRoute>} />
-          <Route path="/backorders/new" element={<PrivateRoute><BackOrderCreate /></PrivateRoute>} />
+          <Route path="/backorders/new" element={<PrivateRoute><BackOrderCreate /></PrivateRoute>}/>
           <Route path="/vendedor/backorders" element={<PrivateRoute><SellerBackOrders /></PrivateRoute>} />
           <Route path="/backorders/purchase" element={<PrivateRoute><PurchaseManagerBackOrders /></PrivateRoute>} />
           <Route path="/providers" element={<PrivateRoute><ProviderManagement /></PrivateRoute>} />
