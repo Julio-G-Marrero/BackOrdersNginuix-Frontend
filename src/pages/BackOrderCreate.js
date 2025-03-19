@@ -35,6 +35,36 @@ const BackOrderCreate = () => {
     };
     fetchClients();
   }, [search]);
+  
+  useEffect(() => {
+    // Cargar borrador al iniciar
+    const loadDraft = async () => {
+      try {
+        const response = await axiosInstance.get(`/backorder-drafts/${userId}`);
+        if (response.data) {
+          setSelectedClient(response.data.client);
+          setBackOrderProducts(response.data.products);
+        }
+      } catch (error) {
+        console.log("No hay borrador guardado.");
+      }
+    };
+    loadDraft();
+  }, [userId]);
+
+  useEffect(() => {
+    // Guardar borrador automáticamente cuando cambian datos
+    const saveDraft = async () => {
+      if (selectedClient || backOrderProducts.length > 0) {
+        await axiosInstance.post("/backorder-drafts", {
+          userId,
+          client: selectedClient,
+          products: backOrderProducts,
+        });
+      }
+    };
+    saveDraft();
+  }, [selectedClient, backOrderProducts, userId]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -215,7 +245,7 @@ const BackOrderCreate = () => {
       // Reiniciar el formulario después de enviar
       setSelectedClient(null);
       setBackOrderProducts([]);
-  
+      await axiosInstance.delete(`/backorder-drafts/${userId}`);
     } catch (error) {
       console.error("❌ Error al crear Back Order:", error);
       alert("⚠️ Hubo un error al crear el Back Order.");
