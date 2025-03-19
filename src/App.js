@@ -17,18 +17,20 @@ import "./App.css"; // ✅ Estilos globales
 
 // 🔹 Componente para PROTEGER rutas privadas
 const PrivateRoute = ({ children, allowedRoles }) => {
-  const user = JSON.parse(localStorage.getItem("user")); // ✅ Obtener usuario del localStorage
+  const user = JSON.parse(localStorage.getItem("user")); // ✅ Obtener usuario autenticado
 
   if (!user) {
-    return <Navigate to="/login" />; // Redirigir si no está autenticado
+    return <Navigate to="/login" />;
   }
 
   if (allowedRoles && !allowedRoles.includes(user.role)) {
-    return <Navigate to="/" />; // Redirigir si no tiene permisos
+    return <Navigate to="/" />;
   }
 
-  return children;
+  // ✅ Pasar `user` como prop a los componentes protegidos
+  return React.cloneElement(children, { user });
 };
+
 
 // 🔹 Componente que gestiona la estructura de la app
 const AppLayout = ({ children }) => {

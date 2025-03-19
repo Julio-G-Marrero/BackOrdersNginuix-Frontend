@@ -5,6 +5,11 @@ import QuantityInput from "../components/QuantityInput";
 import Swal from "sweetalert2";
 
 const BackOrderCreate = () => {
+  const userId = user?.id;
+  if (!userId) {
+    console.error("❌ No se encontró el `userId`");
+    return <p>Error: Usuario no autenticado</p>;
+  }
   const [clients, setClients] = useState([]);
   const [filteredClients, setFilteredClients] = useState([]);
   const [search, setSearch] = useState("");
