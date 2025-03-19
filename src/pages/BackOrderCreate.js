@@ -4,14 +4,17 @@ import axiosInstance from "../services/axiosInstance";
 import QuantityInput from "../components/QuantityInput";
 import Swal from "sweetalert2";
 
-const BackOrderCreate = ({ user }) => {
-  const userId = user?.id; // ✅ Obtener el userId del usuario autenticado
-
+const BackOrderCreate = () => {
+  const storedUser = localStorage.getItem("user");
+  const user = storedUser ? JSON.parse(storedUser) : null;
   if (!user) {
     console.error("❌ No se encontró el usuario.");
     return <p>Error: Debes iniciar sesión</p>;
   }
-
+  const userId = user?._id;
+  useEffect(() => {
+    console.log("🔹 userId obtenido:", userId);
+  }, [userId]);
   const [clients, setClients] = useState([]);
   const [filteredClients, setFilteredClients] = useState([]);
   const [search, setSearch] = useState("");
@@ -86,6 +89,7 @@ const BackOrderCreate = ({ user }) => {
     console.log("🔄 Estado actualizado:", { selectedClient, backOrderProducts });
   }, [selectedClient, backOrderProducts]);
 
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (

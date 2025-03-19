@@ -17,20 +17,18 @@ import "./App.css"; // ✅ Estilos globales
 
 // 🔹 Componente para PROTEGER rutas privadas
 const PrivateRoute = ({ children, allowedRoles }) => {
-  const user = JSON.parse(localStorage.getItem("user")); // ✅ Obtener usuario autenticado
+  const user = JSON.parse(localStorage.getItem("user")); // ✅ Obtener usuario del localStorage
 
   if (!user) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" />; // Redirigir si no está autenticado
   }
 
   if (allowedRoles && !allowedRoles.includes(user.role)) {
-    return <Navigate to="/" />;
+    return <Navigate to="/" />; // Redirigir si no tiene permisos
   }
 
-  // ✅ Pasar `user` como prop a los componentes protegidos
-  return React.cloneElement(children, { user });
+  return children;
 };
-
 
 // 🔹 Componente que gestiona la estructura de la app
 const AppLayout = ({ children }) => {
@@ -66,7 +64,7 @@ const App = () => {
           <Route path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           <Route path="/customers" element={<PrivateRoute><CustomerManagement /></PrivateRoute>} />
           <Route path="/products" element={<PrivateRoute><ProductManagement /></PrivateRoute>} />
-          <Route path="/backorders/new" element={<PrivateRoute><BackOrderCreate /></PrivateRoute>}/>
+          <Route path="/backorders/new" element={<PrivateRoute><BackOrderCreate /></PrivateRoute>} />
           <Route path="/vendedor/backorders" element={<PrivateRoute><SellerBackOrders /></PrivateRoute>} />
           <Route path="/backorders/purchase" element={<PrivateRoute><PurchaseManagerBackOrders /></PrivateRoute>} />
           <Route path="/providers" element={<PrivateRoute><ProviderManagement /></PrivateRoute>} />
